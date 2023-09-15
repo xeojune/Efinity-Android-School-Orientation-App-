@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
+import android.widget.TextView
+import com.example.e_finity.login.LogOrSignActivity
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +17,14 @@ class MainActivity : AppCompatActivity() {
         val sess = sharePreference.getString("SESSION", "").toString()
 
         if (sess == "") {
+            movePage()
+        }
+
+        val logoutTextView = findViewById<TextView>(R.id.logoutTextView)
+        logoutTextView.setOnClickListener {
+            val editor = sharePreference.edit()
+            editor.clear()
+            editor.apply()
             movePage()
         }
     }

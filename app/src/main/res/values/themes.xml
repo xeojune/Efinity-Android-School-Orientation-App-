@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.Efinity" parent="Base.Theme.Efinity" />
+
+    <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
+        <item name="colorPrimary">#545F71</item>
+    </style>
+
 </resources>
