@@ -2,21 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:title="Home"
-        android:id="@+id/home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/baseline_home_24"/>
     <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:title="Score"
-        android:id="@+id/score"
+        android:id="@+id/scoreFragment"
         android:icon="@drawable/baseline_sports_score_24"/>
     <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:title="Profile"
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/baseline_person_2_24"/>
 </menu>

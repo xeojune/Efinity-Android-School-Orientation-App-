@@ -61,4 +61,9 @@ dependencies {
     implementation("com.github.romellfudi:FudiNFC:1.2.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("io.getstream:avatarview-coil:1.0.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.1")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.4.1")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.4.1")
+    implementation("androidx.navigation:navigation-compose:2.4.1")
 }

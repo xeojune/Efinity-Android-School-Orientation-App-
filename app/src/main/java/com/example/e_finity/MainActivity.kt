@@ -1,47 +1,21 @@
 package com.example.e_finity
 
-import android.annotation.SuppressLint
-import android.app.Activity
+
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.media.Image
-import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.OpenableColumns
-import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.e_finity.databinding.ActivityMainBinding
 import com.example.e_finity.login.LogOrSignActivity
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.storage.Storage
-import io.github.jan.supabase.storage.storage
-import kotlinx.coroutines.launch
-import org.w3c.dom.Text
-import java.io.ByteArrayOutputStream
-import java.io.IOException
-import kotlin.time.Duration.Companion.seconds
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(Home())
 
         val client = getclient()
 
@@ -62,21 +35,13 @@ class MainActivity : AppCompatActivity() {
             movePage()
         }
 
-        binding.bottomNavigationView.setOnItemSelectedListener {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val navView: BottomNavigationView = findViewById(R.id.bottomNavigation)
+        navView.setupWithNavController(navController)
 
-            when(it.itemId) {
-                R.id.home -> replaceFragment(Home())
-                R.id.score -> replaceFragment(Score())
-                R.id.profile -> replaceFragment(Profile())
 
-                else -> {
 
-                }
-
-            }
-
-            true
-        }
     }
 
 
@@ -98,17 +63,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun replaceFragment(fragment: Fragment){
-
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
-
-
-    }
 
 
 }
