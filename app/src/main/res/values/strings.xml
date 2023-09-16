@@ -2,4 +2,6 @@
     <string name="app_name">E-finity+</string>
     <string name="forgotPass"><u>Forgot Password</u></string>
     <string name="signUp"><u>Sign up</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

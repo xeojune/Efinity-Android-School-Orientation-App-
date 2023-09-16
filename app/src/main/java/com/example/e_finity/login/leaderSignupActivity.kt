@@ -83,10 +83,12 @@ class leaderSignupActivity: AppCompatActivity() {
             else if ("User already registered" in e.toString()) {
                 Toast.makeText(this, "There is an existing user with this email", Toast.LENGTH_LONG).show()
             }
+            else if ("Unable to validate" in e.toString()) {
+                Toast.makeText(this, "Incorrect email format", Toast.LENGTH_LONG).show()
+            }
             else{
                 Toast.makeText(this, "Password should be at least 6 characters long", Toast.LENGTH_LONG).show()
             }
-
         }
     }
 

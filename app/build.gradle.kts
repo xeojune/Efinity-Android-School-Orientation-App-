@@ -50,7 +50,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-    implementation("io.github.jan-tennert.supabase:postgrest-kt:0.7.6")
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:1.2.0")
+    implementation("io.github.jan-tennert.supabase:storage-kt:1.2.0")
     implementation("io.ktor:ktor-client-cio:2.3.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
@@ -58,4 +59,6 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.8")
     implementation("io.insert-koin:koin-android:3.0.1")
     implementation("com.github.romellfudi:FudiNFC:1.2.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("io.getstream:avatarview-coil:1.0.7")
 }

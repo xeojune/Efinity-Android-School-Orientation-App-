@@ -9,6 +9,8 @@ import com.example.e_finity.MainActivity
 import com.example.e_finity.R
 
 class LogOrSignActivity: AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logorsign)
@@ -25,19 +27,8 @@ class LogOrSignActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-//        val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
-//        val sess = sharePreference.getString("SESSION", "").toString()
-//
-//        if (sess != "") {
-//            movePage()
-//        }
+
 
     }
-
-//    private fun movePage() {
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
-//    }
 
 }
