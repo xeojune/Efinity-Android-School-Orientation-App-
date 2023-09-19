@@ -50,3 +50,8 @@ data class StatsRead(
     val Defence: Int,
     val Accuracy: Int
 )
+
+@Serializable
+data class GroupName(
+    val name: String
+)

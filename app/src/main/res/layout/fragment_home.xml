@@ -7,8 +7,70 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        android:id="@+id/headerTitle"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:text="Welcome Freshman!"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/themeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="165dp"
+        android:paddingLeft="20dp"
+        android:text="EFINITY'23 THEME"
+        android:textSize="13sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/bannerImage"
+        android:layout_width="370dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="205dp"
+        android:src="@drawable/efinitybanner"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="415dp"
+        android:paddingLeft="20dp"
+        android:text="Description"
+        android:textSize="13sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="450dp"
+        android:paddingLeft="20dp"
+        android:text="@string/homeDescription"
+        android:textSize="10sp"/>
+
+    <Button
+        android:id="@+id/manageteamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="91dp"
+        android:text="Manage Team"
+        android:backgroundTint="#545F71" />
+
 
 </RelativeLayout>

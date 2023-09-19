@@ -4,4 +4,7 @@
     <string name="signUp"><u>Sign up</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="homeDescription">With newfound unity, the planets synchronised their efforts. Simultaneously, they embarked on solitary journeys, tirelessly honing their individual powers to reach greater heights. Each planet, in its own unique way, sought to ascend to a higher level of cosmic prowess.
+        \n\nNow, the weighty responsibility falls upon you, valiant protectors, to rise and safeguard the very essence of our existence—the Sun itself. The destiny of our celestial home hinges on your unwavering dedication and collective strength.</string>
+
 </resources>

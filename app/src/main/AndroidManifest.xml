@@ -33,6 +33,9 @@
         <activity android:name=".login.LogOrSignActivity"></activity>
         <activity android:name=".login.LeaderLoginActivity"></activity>
         <activity android:name=".login.leaderSignupActivity"></activity>
+        <activity android:name=".teams.TeamActivity"></activity>
+        <activity android:name=".teams.JoinTeamActivity"></activity>
+        <activity android:name=".teams.MakeTeamActivity"></activity>
     </application>
 
 </manifest>
