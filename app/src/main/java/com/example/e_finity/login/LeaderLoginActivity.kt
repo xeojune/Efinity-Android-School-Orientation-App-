@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
+import com.example.e_finity.UserRead
 import com.example.e_finity.databinding.ActivityLeaderloginBinding
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -16,7 +17,9 @@ import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.gotrue.gotrue
 import io.github.jan.supabase.gotrue.providers.builtin.Email
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
 class LeaderLoginActivity: AppCompatActivity() {
     private lateinit var binding: ActivityLeaderloginBinding
@@ -54,6 +57,11 @@ class LeaderLoginActivity: AppCompatActivity() {
             }.onSuccess {
                 val editor = sharePreference.edit()
                 editor.putString("SESSION", binding.emailEditText.text.toString())
+                val userinforesponse = client.postgrest["user"].select{
+                    eq("uniqueID", binding.emailEditText.text.toString())
+                }
+                val userinfo = userinforesponse.decodeList<UserRead>()
+                editor.putBoolean("AVATAR", userinfo[0].avatar)
                 editor.apply()
                 movePage()
             }
@@ -82,3 +90,4 @@ class LeaderLoginActivity: AppCompatActivity() {
         }
     }
 }
+

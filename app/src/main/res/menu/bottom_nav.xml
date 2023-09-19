@@ -8,9 +8,9 @@
     <item
         android:title="Score"
         android:id="@+id/scoreFragment"
-        android:icon="@drawable/baseline_sports_score_24"/>
+        android:icon="@drawable/baseline_crown"/>
     <item
         android:title="Profile"
         android:id="@+id/profileFragment"
-        android:icon="@drawable/baseline_person_2_24"/>
+        android:icon="@drawable/baseline_person"/>
 </menu>

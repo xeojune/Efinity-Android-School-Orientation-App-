@@ -30,16 +30,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
         }, SPLASH_SCREEN_TIME)
 
-//        val backgroundImg : ImageView = findViewById(R.id.iv_logo)
-//        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.slide)
-//        backgroundImg.startAnimation(slideAnimation)
-//
-//        Handler().postDelayed({
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        },5000
-//        )
-
 
     }
 }

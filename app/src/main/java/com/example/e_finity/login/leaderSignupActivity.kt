@@ -7,6 +7,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.e_finity.Stats
+import com.example.e_finity.User
 import com.example.e_finity.databinding.ActivityLeadersignupBinding
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -93,16 +95,36 @@ class leaderSignupActivity: AppCompatActivity() {
     }
 
     private fun updateTable() {
-        val user = User(email = binding.emailEditText.text.toString(),
+        val user = User(uniqueID = binding.emailEditText.text.toString(),
             full_name = binding.fullnameEditText.text.toString(),
             phone_num = binding.phoneEditText.text.toString(),
-            role = binding.roleSpinner.selectedItem.toString())
-        lifecycleScope.launch {
-            kotlin.runCatching {
-                client.postgrest["user"].insert(user, returning = Returning.MINIMAL)
+            role = binding.roleSpinner.selectedItem.toString(),
+            avatar = false,
+            group = "None",
+            score = 0)
+        if (binding.roleSpinner.selectedItem.toString() == "Senior") {
+            val userStats = Stats(uniqueID = binding.emailEditText.text.toString(),
+                Attack = 999, HP = 999, Defence = 999, Accuracy = 999)
+            lifecycleScope.launch {
+                kotlin.runCatching {
+                    client.postgrest["user"].insert(user, returning = Returning.MINIMAL)
+                    client.postgrest["stats"].insert(userStats, returning = Returning.MINIMAL)
+                }
+            }
+        }
+        else {
+            val userStats = Stats(uniqueID = binding.emailEditText.text.toString(),
+                Attack = 50, HP = 50, Defence = 50, Accuracy = 50)
+            lifecycleScope.launch {
+                kotlin.runCatching {
+                    client.postgrest["user"].insert(user, returning = Returning.MINIMAL)
+                    client.postgrest["stats"].insert(userStats, returning = Returning.MINIMAL)
+                }
             }
         }
     }
+
+
 
     private fun getclient(): SupabaseClient {
         return createSupabaseClient(
@@ -115,11 +137,3 @@ class leaderSignupActivity: AppCompatActivity() {
     }
 
 }
-
-@Serializable
-data class User(
-    val email: String,
-    val full_name: String,
-    val phone_num: String,
-    val role: String
-)
