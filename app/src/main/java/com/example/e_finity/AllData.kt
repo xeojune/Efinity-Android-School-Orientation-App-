@@ -55,3 +55,9 @@ data class StatsRead(
 data class GroupName(
     val name: String
 )
+
+@Serializable
+data class GroupAdd(
+    val name: String,
+    val color: String
+)
