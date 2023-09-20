@@ -3,8 +3,13 @@ package com.example.e_finity
 
 import android.content.Context
 import android.content.Intent
+import android.nfc.NfcAdapter
+import android.nfc.Tag
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
@@ -17,11 +22,13 @@ import com.example.e_finity.databinding.ActivityMainBinding
 import com.example.e_finity.login.LogOrSignActivity
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.romellfudi.fudinfc.gear.NfcAct
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.storage.Storage
+import java.math.BigInteger
 
 class MainActivity : AppCompatActivity() {
 

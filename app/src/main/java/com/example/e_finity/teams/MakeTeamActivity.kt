@@ -1,18 +1,22 @@
 package com.example.e_finity.teams
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.GroupAdd
 import com.example.e_finity.GroupRead
+import com.example.e_finity.MainActivity
 import com.example.e_finity.databinding.ActivityMaketeamBinding
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.annotations.SupabaseExperimental
@@ -29,6 +33,7 @@ import io.github.jan.supabase.storage.uploadAsFlow
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
+
 
 class MakeTeamActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMaketeamBinding
@@ -68,7 +73,10 @@ class MakeTeamActivity: AppCompatActivity() {
             else {
                 uploadImg()
                 addgrouptable()
-                Toast.makeText(this,"Success", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Successfully created group", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                startActivity(intent)
             }
         }
     }
@@ -90,9 +98,17 @@ class MakeTeamActivity: AppCompatActivity() {
             name = binding.teamnameEditText.text.toString(),
             color = binding.colorEditText.text.toString()
         )
+        val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         lifecycleScope.launch {
             kotlin.runCatching {
                 client.postgrest["Orientation Group"].insert(group, returning = Returning.MINIMAL)
+                client.postgrest["user"].update(
+                    {
+                        set("group", binding.teamnameEditText.text.toString())
+                    }
+                ) {
+                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+                }
             }
         }
     }
@@ -113,5 +129,19 @@ class MakeTeamActivity: AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun updateUserGroup() {
+        val client = getclient()
+        val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        lifecycleScope.launch {
+            client.postgrest["user"].update(
+                {
+                    set("group", binding.teamnameEditText.text.toString())
+                }
+            ) {
+                eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+            }
+        }
     }
 }
