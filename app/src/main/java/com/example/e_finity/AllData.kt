@@ -1,5 +1,6 @@
 package com.example.e_finity
 
+import com.google.android.material.color.utilities.Score
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -42,9 +43,29 @@ data class Stats(
 )
 
 @Serializable
-data class StatsRead(
-    val id: Int,
-    val uniqueID: String,
+data class GroupAdd(
+    val name: String,
+    val color: String
+)
+
+@Serializable
+data class uRead(
+    val uniqueID: List<userStats>,
+    val full_name: String,
+    val phone_num: String,
+    val role: String,
+    val score: Int,
+    val group: orient
+)
+
+@Serializable
+data class orient(
+    val name: String,
+    val color: String
+)
+
+@Serializable
+data class userStats(
     val Attack: Int,
     val HP: Int,
     val Defence: Int,
@@ -52,12 +73,10 @@ data class StatsRead(
 )
 
 @Serializable
-data class GroupName(
-    val name: String
-)
-
-@Serializable
-data class GroupAdd(
-    val name: String,
-    val color: String
+data class treasureClass(
+    val id: Int,
+    val UID: String,
+    val points: Int,
+    val content: String,
+    val completed: String
 )

@@ -1,14 +1,20 @@
 package com.example.e_finity.fragments
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
+import com.example.e_finity.games.treasureHuntActivity
+import com.example.e_finity.teams.TeamActivity
 import com.github.antonpopoff.colorwheel.ColorWheel
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -25,7 +31,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-class ScoreFragment : Fragment() {
+class GamesFragment : Fragment() {
 
     private var activity: MainActivity?= null
 
@@ -35,13 +41,19 @@ class ScoreFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_score, container, false)
+        val view = inflater.inflate(R.layout.fragment_games, container, false)
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val treasurePlayBtn = view.findViewById<AppCompatButton>(R.id.treasurePlayBtn)
+        treasurePlayBtn.setOnClickListener{
+            requireActivity().run {
+                startActivity(Intent(this, treasureHuntActivity::class.java))
+            }
+        }
     }
 
 }

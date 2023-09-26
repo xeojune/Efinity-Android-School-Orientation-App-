@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
-    <uses-sdk android:minSdkVersion="10"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+
+    <uses-sdk android:minSdkVersion="10" />
 
     <application
         android:allowBackup="true"
@@ -29,13 +30,33 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
+                <data android:scheme="http"
+                    android:host="www.example.com"
+                    android:pathPrefix="/gizmos" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "example://gizmos” -->
+                <data android:scheme="example"
+                    android:host="gizmos" />
+            </intent-filter>
         </activity>
         <activity android:name=".login.LogOrSignActivity"></activity>
         <activity android:name=".login.LeaderLoginActivity"></activity>
         <activity android:name=".login.leaderSignupActivity"></activity>
+        <activity android:name=".login.LeaderForgotActivity"></activity>
         <activity android:name=".teams.TeamActivity"></activity>
         <activity android:name=".teams.JoinTeamActivity"></activity>
         <activity android:name=".teams.MakeTeamActivity"></activity>
+        <activity android:name=".games.treasureHuntActivity"></activity>
     </application>
 
 </manifest>

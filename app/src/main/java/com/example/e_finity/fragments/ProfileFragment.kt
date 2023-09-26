@@ -15,12 +15,10 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.e_finity.GroupRead
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
-import com.example.e_finity.StatsRead
-import com.example.e_finity.UserRead
 import com.example.e_finity.login.LogOrSignActivity
+import com.example.e_finity.uRead
 import com.google.android.material.card.MaterialCardView
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.annotations.SupabaseExperimental
@@ -28,6 +26,7 @@ import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.UploadStatus
 import io.github.jan.supabase.storage.storage
@@ -106,36 +105,29 @@ class ProfileFragment : Fragment() {
             Glide.with(view).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(avatarimageView)
         }
         runBlocking{
-            //For User Information
-            val userinforesponse =client.postgrest["user"].select() {
+
+            val userinfo =client.postgrest["user"].select(columns = Columns.list("""uniqueID!inner(Attack, HP, Defence, Accuracy), full_name, phone_num, role, score, group!inner(name, color)""")) {
                 eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-            }
-            val userinfo = userinforesponse.decodeList<UserRead>()
-            val groupinforesponse = client.postgrest["Orientation Group"].select {
-                eq("name", userinfo[0].group)
-            }
-            val groupinfo = groupinforesponse.decodeList<GroupRead>()
-            avatarBorder.setStrokeColor(Color.parseColor("#"+groupinfo[0].color))
+            }.decodeList<uRead>()
+
+            //For User Information
+            avatarBorder.setStrokeColor(Color.parseColor("#"+userinfo[0].group.color))
             name.text = userinfo[0].full_name
-            name.setTextColor(Color.parseColor("#"+groupinfo[0].color))
-            oGroup.text = userinfo[0].group
-            oGroup.setTextColor(Color.parseColor("#"+groupinfo[0].color))
+            name.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
+            oGroup.text = userinfo[0].group.name
+            oGroup.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
             contactNumber.text = userinfo[0].phone_num
-            contactNumber.setTextColor(Color.parseColor("#"+groupinfo[0].color))
+            contactNumber.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
             role.text = userinfo[0].role
-            role.setTextColor(Color.parseColor("#"+groupinfo[0].color))
+            role.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
             points.text = userinfo[0].score.toString()
-            points.setTextColor(Color.parseColor("#"+groupinfo[0].color))
+            points.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
 
             //For User Stats
-            val userstatsresponse =client.postgrest["stats"].select() {
-                eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-            }
-            val userstats = userstatsresponse.decodeList<StatsRead>()
-            attpts.text = userstats[0].Attack.toString()
-            hp.text = userstats[0].HP.toString()
-            defpts.text = userstats[0].Defence.toString()
-            accpts.text = userstats[0].Accuracy.toString()
+            attpts.text = userinfo[0].uniqueID[0].Attack.toString()
+            hp.text = userinfo[0].uniqueID[0].HP.toString()
+            defpts.text = userinfo[0].uniqueID[0].Defence.toString()
+            accpts.text = userinfo[0].uniqueID[0].Accuracy.toString()
         }
 
 

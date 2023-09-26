@@ -10,6 +10,10 @@
         android:id="@+id/mapFragment"
         android:icon="@drawable/baseline_map_24"/>
     <item
+        android:title="Games"
+        android:id="@+id/gamesFragment"
+        android:icon="@drawable/baseline_games"/>
+    <item
         android:title="Score"
         android:id="@+id/scoreFragment"
         android:icon="@drawable/baseline_crown"/>

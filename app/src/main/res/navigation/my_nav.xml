@@ -25,4 +25,9 @@
         android:name="com.example.e_finity.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/gamesFragment"
+        android:name="com.example.e_finity.fragments.GamesFragment"
+        android:label="fragment_games"
+        tools:layout="@layout/fragment_games" />
 </navigation>

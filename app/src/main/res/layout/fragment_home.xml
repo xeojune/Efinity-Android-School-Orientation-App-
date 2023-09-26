@@ -8,13 +8,13 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/headerTitle"
-        android:layout_width="163dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:paddingLeft="20dp"
         android:layout_marginTop="70dp"
-        android:text="Welcome Freshman!"
+        android:paddingLeft="20dp"
+        android:text="Welcome \nFreshman!"
         android:textSize="30sp" />
 
     <TextView
@@ -41,6 +41,7 @@
         android:src="@drawable/efinitybanner"/>
 
     <TextView
+        android:id="@+id/descriptionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -72,6 +73,14 @@
         android:layout_marginBottom="20dp"
         android:text="Manage Team"
         android:backgroundTint="#545F71" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="326dp" />
 
 
 </RelativeLayout>

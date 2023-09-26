@@ -1,14 +1,20 @@
 package com.example.e_finity.login
 
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.e_finity.MainActivity
 import com.example.e_finity.Stats
 import com.example.e_finity.User
+import com.example.e_finity.UserRead
 import com.example.e_finity.databinding.ActivityLeadersignupBinding
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -76,11 +82,13 @@ class leaderSignupActivity: AppCompatActivity() {
                 this.password = binding.passwordEditText.text.toString()
             }
             updateTable()
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Successfully signed up", Toast.LENGTH_SHORT).show()
+            login()
         } catch (e: Exception) {
             if ("confirmation_sent_at" in e.toString()) {
                 updateTable()
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Success signed up", Toast.LENGTH_SHORT).show()
+                login()
             }
             else if ("User already registered" in e.toString()) {
                 Toast.makeText(this, "There is an existing user with this email", Toast.LENGTH_LONG).show()
@@ -123,6 +131,37 @@ class leaderSignupActivity: AppCompatActivity() {
             }
         }
     }
+
+    private fun movePage() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
+
+    private fun login() {
+        val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+        lifecycleScope.launch {
+            kotlin.runCatching {
+                client.gotrue.loginWith(Email) {
+                    email = binding.emailEditText.text.toString()
+                    password = binding.passwordEditText.text.toString()
+                }
+            }.onSuccess {
+                val editor = sharePreference.edit()
+                editor.putString("SESSION", binding.emailEditText.text.toString())
+                val userinforesponse = client.postgrest["user"].select{
+                    eq("uniqueID", binding.emailEditText.text.toString())
+                }
+                val userinfo = userinforesponse.decodeList<UserRead>()
+                editor.putBoolean("AVATAR", userinfo[0].avatar)
+                editor.apply()
+                movePage()
+            }
+        }
+    }
+
+
+
 
 
 

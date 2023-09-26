@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -67,5 +68,10 @@ dependencies {
     implementation("androidx.navigation:navigation-dynamic-features-fragment:2.6.0")
     androidTestImplementation("androidx.navigation:navigation-testing:2.6.0")
     implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("com.github.antonpopoff:colorwheel:1.1.13")
+    implementation("io.github.jan-tennert.supabase:realtime-kt:1.2.0")
+
+
+
 
 }

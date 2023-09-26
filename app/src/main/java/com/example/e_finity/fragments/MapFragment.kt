@@ -29,7 +29,7 @@ class MapFragment : Fragment() {
         val webView = view.findViewById<WebView>(R.id.webView)
         webView.webViewClient = WebViewClient()
 
-        webView.loadUrl("https://maps.ntu.edu.sg/")
+        webView.loadUrl("https://maps.ntu.edu.sg/#/ntu/d386ffa80e4e46f286d17f08/poi/search")
         webView.settings.javaScriptEnabled = true
         webView.settings.setSupportZoom(true)
 

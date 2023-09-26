@@ -36,6 +36,9 @@ class LeaderLoginActivity: AppCompatActivity() {
         binding.signupTextView.setOnClickListener {
             signupPage()
         }
+        binding.forgotPassTextView.setOnClickListener {
+            forgotPage()
+        }
     }
 
 
@@ -77,6 +80,11 @@ class LeaderLoginActivity: AppCompatActivity() {
     private fun movePage() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+    }
+
+    private fun forgotPage() {
+        val intent = Intent(this, LeaderForgotActivity::class.java)
         startActivity(intent)
     }
 

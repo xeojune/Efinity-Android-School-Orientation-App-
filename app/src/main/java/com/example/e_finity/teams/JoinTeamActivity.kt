@@ -3,15 +3,11 @@ package com.example.e_finity.teams
 import android.R
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.ListAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.e_finity.GroupName
 import com.example.e_finity.GroupRead
 import com.example.e_finity.MainActivity
 import com.example.e_finity.databinding.ActivityJointeamBinding
@@ -20,7 +16,6 @@ import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
 import kotlinx.coroutines.launch
 
 class JoinTeamActivity: AppCompatActivity() {

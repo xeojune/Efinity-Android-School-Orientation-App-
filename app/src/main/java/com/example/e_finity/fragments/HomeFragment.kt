@@ -8,6 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
@@ -21,6 +24,7 @@ import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.Storage
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class HomeFragment : Fragment() {
 
@@ -55,19 +59,55 @@ class HomeFragment : Fragment() {
 
         val client = getclient()
         val manageTeamBtn = view.findViewById<Button>(R.id.manageteamButton)
-        manageTeamBtn.setOnClickListener {
-            lifecycleScope.launch {
-                val userteamResponse = client.postgrest["user"].select {
-                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-                }
-                val userteam = userteamResponse.decodeList<UserRead>()
-                if (userteam[0].group == "None") {
-                    requireActivity().run {
-                        startActivity(Intent(this, TeamActivity::class.java))
-                    }
-                }
+        val pBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        val headerTitle = view.findViewById<TextView>(R.id.headerTitle)
+        val themeTitle = view.findViewById<TextView>(R.id.themeTitle)
+        val bannerImage = view.findViewById<ImageView>(R.id.bannerImage)
+        val descriptionHeader = view.findViewById<TextView>(R.id.descriptionHeader)
+        val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
+        headerTitle.visibility = View.GONE
+        themeTitle.visibility = View.GONE
+        bannerImage.visibility = View.GONE
+        descriptionHeader.visibility = View.GONE
+        descriptionTextView.visibility = View.GONE
+        lifecycleScope.launch {
+            val userRight = client.postgrest["user"].select {
+                eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+            }.decodeList<UserRead>()
+            if (userRight[0].role == "Freshman") {
+                pBar.visibility = View.GONE
+                headerTitle.visibility = View.VISIBLE
+                themeTitle.visibility = View.VISIBLE
+                bannerImage.visibility = View.VISIBLE
+                descriptionHeader.visibility = View.VISIBLE
+                descriptionTextView.visibility = View.VISIBLE
+            }
+            else {
+                pBar.visibility = View.GONE
+                headerTitle.setText("Welcome Back \nLeader!")
+                headerTitle.visibility = View.VISIBLE
+                themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
+                themeTitle.visibility = View.VISIBLE
             }
         }
+
+
+//        pBar.visibility = View.GONE
+//        manageTeamBtn.setOnClickListener {
+//            lifecycleScope.launch {
+//                pBar.visibility = View.VISIBLE
+//                val userteamResponse = client.postgrest["user"].select {
+//                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+//                }
+//                val userteam = userteamResponse.decodeList<UserRead>()
+//                if (userteam[0].group == "None") {
+//                    pBar.visibility = View.GONE
+//                    requireActivity().run {
+//                        startActivity(Intent(this, TeamActivity::class.java))
+//                    }
+//                }
+//            }
+//        }
     }
 
 }
