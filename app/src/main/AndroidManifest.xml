@@ -57,6 +57,7 @@
         <activity android:name=".teams.JoinTeamActivity"></activity>
         <activity android:name=".teams.MakeTeamActivity"></activity>
         <activity android:name=".games.treasureHuntActivity"></activity>
+        <activity android:name=".games.AddTreasureActivity"></activity>
     </application>
 
 </manifest>

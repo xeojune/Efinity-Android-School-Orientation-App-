@@ -80,3 +80,11 @@ data class treasureClass(
     val content: String,
     val completed: String
 )
+
+@Serializable
+data class treasureClassAdd(
+    val UID: String,
+    val points: Int,
+    val content: String,
+    val completed: String
+)
