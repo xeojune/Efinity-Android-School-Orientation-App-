@@ -23,7 +23,7 @@ import com.example.e_finity.treasureClass
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.utilities.Score
 
-class treasureAdapter(private val user: String, var data: List<treasureClass>) : RecyclerView.Adapter<treasureAdapter.ViewHolder>() {
+class treasureAdapter(val user: String, var data: List<treasureClass>) : RecyclerView.Adapter<treasureAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
@@ -40,6 +40,7 @@ class treasureAdapter(private val user: String, var data: List<treasureClass>) :
             val treasureMissionText = findViewById<TextView>(R.id.treasureMissionText)
             val treasureContentText = findViewById<TextView>(R.id.treasureContentText)
             val addImage = findViewById<ImageView>(R.id.addImage)
+            val editImage = findViewById<ImageView>(R.id.editImage)
             addImage.visibility = View.GONE
             addImage.setOnClickListener {
                 val intent = Intent(context, AddTreasureActivity::class.java)
@@ -47,6 +48,7 @@ class treasureAdapter(private val user: String, var data: List<treasureClass>) :
             }
             if (position == data.size) {
                 addImage.visibility = View.VISIBLE
+                editImage.visibility = View.GONE
                 treasureContentText.visibility = View.GONE
                 treasurePointBorder.visibility = View.GONE
                 treasureScoreText.visibility = View.GONE
@@ -60,10 +62,26 @@ class treasureAdapter(private val user: String, var data: List<treasureClass>) :
                 treasureContentText.text = data[position].content
                 treasureMissionText.text = "Mission "  + (position+1).toString()
             }
+            editImage.setOnClickListener {
+                val intent = Intent(context, AddTreasureActivity::class.java)
+                intent.putExtra("content", treasureContentText.text.toString())
+                intent.putExtra("point", data[position].points.toString())
+                intent.putExtra("nfc", data[position].UID)
+                context.startActivity(intent)
+            }
         }
     }
 
     override fun getItemCount(): Int {
         return data.size+1
     }
+//
+//    override fun getItemId(position: Int): Long {
+//        return super.getItemId(position)
+//    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
 }

@@ -88,3 +88,16 @@ data class treasureClassAdd(
     val content: String,
     val completed: String
 )
+
+@Serializable
+data class treasureClassComplete(
+    val UID: String,
+    val points: Int,
+    val completed: String
+)
+
+@Serializable
+data class userScore(
+    val uniqueID: String,
+    val score: Int
+)

@@ -28,7 +28,15 @@ class AddTreasureActivity: NfcAct() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddtreasureBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val content = intent.getStringExtra("content")
+        val point = intent.getStringExtra("point")
+        val nfc = intent.getStringExtra("nfc")
+        if (content != null) {
+            binding.treasureContentEdit.setText(content)
+            binding.treasureScoreEdit.setText(point)
+            binding.nfcTextView.text = "Scanned NFC: " + nfc
+            binding.treasureAddBtn.text = "Edit"
+        }
         binding.treasureAddBtn.setOnClickListener {
             if (binding.treasureContentEdit.text.toString() == "" || binding.treasureScoreEdit.text.toString() == "") {
                 Toast.makeText(this, "Incomplete fields", Toast.LENGTH_LONG).show()
@@ -37,8 +45,14 @@ class AddTreasureActivity: NfcAct() {
                 Toast.makeText(this, "Scan an unregistered NFC", Toast.LENGTH_LONG).show()
             }
             else {
-                addTreasureData()
-                finish()
+                if (binding.treasureAddBtn.text == "Edit") {
+                    if (nfc != null) {
+                        updateTreasureData(nfc)
+                    }
+                }
+                else{
+                    addTreasureData()
+                }
             }
         }
     }
@@ -55,12 +69,40 @@ class AddTreasureActivity: NfcAct() {
             UID = binding.nfcTextView.text.toString().replace("Scanned NFC: ", ""),
             content = binding.treasureContentEdit.text.toString(),
             points = binding.treasureScoreEdit.text.toString().toInt(),
-            completed = ""
+            completed = " "
         )
         lifecycleScope.launch {
-            client.postgrest["treasureHunt"].insert(treasureData, returning = Returning.MINIMAL)
+            kotlin.runCatching {
+                client.postgrest["treasureHunt"].insert(treasureData, returning = Returning.MINIMAL)
+            }.onFailure {
+                Toast.makeText(this@AddTreasureActivity, "There is already a mission that is registered with the scanned tag", Toast.LENGTH_LONG).show()
+            }.onSuccess {
+                finish()
+            }
         }
     }
+
+    private fun updateTreasureData(onfc: String) {
+        val client = getclient()
+        lifecycleScope.launch {
+            kotlin.runCatching {
+                client.postgrest["treasureHunt"].update(
+                    {
+                        set("UID", binding.nfcTextView.text.toString().replace("Scanned NFC: ", ""))
+                        set("points", binding.treasureScoreEdit.text.toString().toInt())
+                        set("content", binding.treasureContentEdit.text.toString())
+                    }
+                ) {
+                    eq("UID", onfc)
+                }
+            }.onFailure {
+                Toast.makeText(this@AddTreasureActivity, "There is already a mission that is registered with the scanned tag", Toast.LENGTH_LONG).show()
+            }.onSuccess {
+                finish()
+            }
+        }
+    }
+
     private fun getclient(): SupabaseClient {
         return createSupabaseClient(
             supabaseUrl = "https://nabbsmcfsskdwjncycnk.supabase.co",

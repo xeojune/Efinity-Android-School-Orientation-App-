@@ -27,7 +27,7 @@
             android:clipToOutline="false"
             android:text="60 Points"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
     </com.google.android.material.card.MaterialCardView>
@@ -70,6 +70,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageView
+        android:id="@+id/editImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_mode_edit_outline_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.198" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
