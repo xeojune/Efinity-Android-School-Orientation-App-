@@ -101,3 +101,30 @@ data class userScore(
     val uniqueID: String,
     val score: Int
 )
+
+@Serializable
+data class scatterClass(
+    val id: Int,
+    val UID: String,
+    val points: Int,
+    val completed: String
+)
+
+@Serializable
+data class scatterClassAdd(
+    val UID: String,
+    val points: Int
+)
+
+@Serializable
+data class scatterClassScan(
+    val UID: String,
+    val points: Int,
+    val completed: String
+)
+
+@Serializable
+data class uReadShort(
+    val full_name: String,
+    val group: orient
+)

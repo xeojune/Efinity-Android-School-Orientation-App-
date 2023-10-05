@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp">
+
+
+    <RelativeLayout
+        android:id="@+id/scatterLayout"
+        android:layout_width="70dp"
+        android:layout_height="140dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025"
+        android:padding="3dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/scatterAvaBorder"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            app:cardCornerRadius="25dp"
+            app:cardPreventCornerOverlap="false"
+            app:strokeColor="@color/black"
+            app:strokeWidth="4dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="192dp">
+
+            <ImageView
+                android:id="@+id/scatterAvaImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/avatar" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/scatterAvaName"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_below="@id/scatterAvaBorder"
+            android:layout_centerHorizontal="true"
+            android:text="Turritopsis Dohrnii Teo En Ming"
+            android:textSize="10sp"/>
+
+        <TextView
+            android:id="@+id/scatterAvaPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_below="@id/scatterAvaName"
+            android:layout_centerHorizontal="true"
+            android:text="100000 points"
+            android:textSize="10sp"/>
+
+        <ImageView
+            android:id="@+id/scatterAdd"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@android:drawable/ic_input_add"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

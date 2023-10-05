@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
@@ -71,23 +72,30 @@ class HomeFragment : Fragment() {
         descriptionHeader.visibility = View.GONE
         descriptionTextView.visibility = View.GONE
         lifecycleScope.launch {
-            val userRight = client.postgrest["user"].select {
-                eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-            }.decodeList<UserRead>()
-            if (userRight[0].role == "Freshman") {
-                pBar.visibility = View.GONE
-                headerTitle.visibility = View.VISIBLE
-                themeTitle.visibility = View.VISIBLE
-                bannerImage.visibility = View.VISIBLE
-                descriptionHeader.visibility = View.VISIBLE
-                descriptionTextView.visibility = View.VISIBLE
-            }
-            else {
-                pBar.visibility = View.GONE
-                headerTitle.setText("Welcome Back \nLeader!")
-                headerTitle.visibility = View.VISIBLE
-                themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
-                themeTitle.visibility = View.VISIBLE
+            kotlin.runCatching {
+                val userRight = client.postgrest["user"].select {
+                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+                }.decodeList<UserRead>()
+                val editor = sharePreference.edit()
+                editor.putString("ROLE", userRight[0].role)
+                editor.apply()
+                if (userRight[0].role == "Freshman") {
+                    pBar.visibility = View.GONE
+                    headerTitle.visibility = View.VISIBLE
+                    themeTitle.visibility = View.VISIBLE
+                    bannerImage.visibility = View.VISIBLE
+                    descriptionHeader.visibility = View.VISIBLE
+                    descriptionTextView.visibility = View.VISIBLE
+                }
+                else {
+                    pBar.visibility = View.GONE
+                    headerTitle.setText("Welcome Back \nLeader!")
+                    headerTitle.visibility = View.VISIBLE
+                    themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
+                    themeTitle.visibility = View.VISIBLE
+                }
+            }.onFailure {
+                Toast.makeText(context, "There is no internet access / Server is down (App may crash)", Toast.LENGTH_LONG).show()
             }
         }
 

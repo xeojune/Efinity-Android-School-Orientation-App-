@@ -58,6 +58,8 @@
         <activity android:name=".teams.MakeTeamActivity"></activity>
         <activity android:name=".games.treasureHuntActivity"></activity>
         <activity android:name=".games.AddTreasureActivity"></activity>
+        <activity android:name=".games.ScatterTagActivity"></activity>
+        <activity android:name=".games.AddScatterActivity"></activity>
     </application>
 
 </manifest>

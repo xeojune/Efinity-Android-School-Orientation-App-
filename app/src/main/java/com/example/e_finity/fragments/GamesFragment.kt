@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
+import com.example.e_finity.games.ScatterTagActivity
 import com.example.e_finity.games.treasureHuntActivity
 import com.example.e_finity.teams.TeamActivity
 import com.github.antonpopoff.colorwheel.ColorWheel
@@ -52,6 +53,12 @@ class GamesFragment : Fragment() {
         treasurePlayBtn.setOnClickListener{
             requireActivity().run {
                 startActivity(Intent(this, treasureHuntActivity::class.java))
+            }
+        }
+        val scatterPlayBtn = view.findViewById<AppCompatButton>(R.id.scatterPlayBtn)
+        scatterPlayBtn.setOnClickListener{
+            requireActivity().run {
+                startActivity(Intent(this, ScatterTagActivity::class.java))
             }
         }
     }

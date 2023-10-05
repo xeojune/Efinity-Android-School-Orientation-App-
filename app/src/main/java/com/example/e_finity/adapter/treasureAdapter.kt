@@ -41,13 +41,21 @@ class treasureAdapter(val user: String, var data: List<treasureClass>) : Recycle
             val treasureContentText = findViewById<TextView>(R.id.treasureContentText)
             val addImage = findViewById<ImageView>(R.id.addImage)
             val editImage = findViewById<ImageView>(R.id.editImage)
+            val sharePreference = context.getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
+            val role = sharePreference.getString("ROLE", "").toString()
             addImage.visibility = View.GONE
+            editImage.visibility = View.GONE
             addImage.setOnClickListener {
                 val intent = Intent(context, AddTreasureActivity::class.java)
                 context.startActivity(intent)
             }
+            if (role == "Senior") {
+                editImage.visibility = View.VISIBLE
+            }
             if (position == data.size) {
-                addImage.visibility = View.VISIBLE
+                if (role == "Senior") {
+                    addImage.visibility = View.VISIBLE
+                }
                 editImage.visibility = View.GONE
                 treasureContentText.visibility = View.GONE
                 treasurePointBorder.visibility = View.GONE

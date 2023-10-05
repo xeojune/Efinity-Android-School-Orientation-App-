@@ -3,8 +3,10 @@ package com.example.e_finity.games
 import android.content.Intent
 import android.nfc.NfcAdapter
 import android.nfc.Tag
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +20,7 @@ import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Returning
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.JsonNull.content
 import java.math.BigInteger
 
 @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -28,10 +31,12 @@ class AddTreasureActivity: NfcAct() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddtreasureBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.deleteBtn.visibility = View.GONE
         val content = intent.getStringExtra("content")
         val point = intent.getStringExtra("point")
         val nfc = intent.getStringExtra("nfc")
         if (content != null) {
+            binding.deleteBtn.visibility = View.VISIBLE
             binding.treasureContentEdit.setText(content)
             binding.treasureScoreEdit.setText(point)
             binding.nfcTextView.text = "Scanned NFC: " + nfc
@@ -55,6 +60,12 @@ class AddTreasureActivity: NfcAct() {
                 }
             }
         }
+
+        binding.deleteBtn.setOnClickListener {
+            if (nfc != null) {
+                deleteMission(nfc)
+            }
+        }
     }
 
     public override fun onNewIntent(paramIntent: Intent) {
@@ -62,6 +73,7 @@ class AddTreasureActivity: NfcAct() {
         val dataMac = getMAC(intent.getParcelableExtra(NfcAdapter.EXTRA_TAG) as? Tag)
         binding.nfcTextView.text = "Scanned NFC: " + dataMac
     }
+
 
     private fun addTreasureData() {
         val client = getclient()
@@ -96,7 +108,7 @@ class AddTreasureActivity: NfcAct() {
                     eq("UID", onfc)
                 }
             }.onFailure {
-                Toast.makeText(this@AddTreasureActivity, "There is already a mission that is registered with the scanned tag", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@AddTreasureActivity, "This tag is already registered", Toast.LENGTH_LONG).show()
             }.onSuccess {
                 finish()
             }
@@ -111,6 +123,16 @@ class AddTreasureActivity: NfcAct() {
             install(Postgrest)
             install(GoTrue)
         }
+    }
+
+    private fun deleteMission(nfc: String) {
+        val client = getclient()
+        lifecycleScope.launch {
+            client.postgrest["treasureHunt"].delete {
+                eq("UID", nfc)
+            }
+        }
+        finish()
     }
 
     private fun getMAC(tag: Tag?): String =
