@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs")
     kotlin("plugin.serialization") version "1.9.0"
 }
 
@@ -70,8 +71,5 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation("com.github.antonpopoff:colorwheel:1.1.13")
     implementation("io.github.jan-tennert.supabase:realtime-kt:1.2.0")
-
-
-
 
 }

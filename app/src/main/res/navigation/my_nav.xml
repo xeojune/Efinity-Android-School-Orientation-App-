@@ -9,7 +9,9 @@
         android:id="@+id/homeFragment"
         android:name="com.example.e_finity.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.e_finity.fragments.MapFragment"

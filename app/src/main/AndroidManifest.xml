@@ -30,24 +30,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                <data android:scheme="http"
-                    android:host="www.example.com"
-                    android:pathPrefix="/gizmos" />
-                <!-- note that the leading "/" is required for pathPrefix-->
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "example://gizmos” -->
-                <data android:scheme="example"
-                    android:host="gizmos" />
-            </intent-filter>
         </activity>
         <activity android:name=".login.LogOrSignActivity"></activity>
         <activity android:name=".login.LeaderLoginActivity"></activity>
@@ -60,6 +42,22 @@
         <activity android:name=".games.AddTreasureActivity"></activity>
         <activity android:name=".games.ScatterTagActivity"></activity>
         <activity android:name=".games.AddScatterActivity"></activity>
+        <activity android:name=".login.ResetPassActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="efinity99.com"
+                    android:pathPrefix="/path"
+                    android:scheme="https" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

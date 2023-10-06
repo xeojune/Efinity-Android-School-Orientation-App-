@@ -7,59 +7,77 @@
     tools:context=".fragments.GamesFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:textStyle="bold"
-        android:textSize="50sp"
         android:gravity="center"
-        android:text="GAME\nTIME" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/treasurePlayBtn"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="245dp"
-        android:background="@drawable/bgovalbutton"
-        android:text="Treasure Hunt"
-        android:textAllCaps="false"
-        android:fontFamily="casual"
-        android:textStyle="bold"
-        android:textSize="30sp"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/scatterPlayBtn"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="415dp"
-        android:background="@drawable/bgovalbutton"
-        android:backgroundTint="#FFCC9C"
-        android:fontFamily="casual"
-        android:text="Scatter Tag"
-        android:textAllCaps="false"
-        android:textSize="30sp"
+        android:text="GAME\nTIME"
+        android:textSize="50sp"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="575dp"
-        android:background="@drawable/bgovalbutton"
-        android:backgroundTint="#9AFFED"
-        android:fontFamily="casual"
-        android:text="Boss Fight"
-        android:textAllCaps="false"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/treasurePlayBtn"
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="245dp"
+                android:background="@drawable/bgovalbutton"
+                android:fontFamily="casual"
+                android:text="Treasure Hunt"
+                android:textAllCaps="false"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/scatterPlayBtn"
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="415dp"
+                android:layout_below="@id/treasurePlayBtn"
+                android:background="@drawable/bgovalbutton"
+                android:backgroundTint="#FFCC9C"
+                android:fontFamily="casual"
+                android:text="Scatter Tag"
+                android:textAllCaps="false"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="575dp"
+                android:layout_below="@id/scatterPlayBtn"
+                android:background="@drawable/bgovalbutton"
+                android:backgroundTint="#9AFFED"
+                android:fontFamily="casual"
+                android:text="Boss Fight"
+                android:textAllCaps="false"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
 
 
 </RelativeLayout>
