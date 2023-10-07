@@ -82,7 +82,8 @@ class ScatterAdapter(var data: List<scatterClass>): RecyclerView.Adapter<Scatter
                             scatterAvaBorder.setStrokeColor(Color.parseColor("#"+userinfo[0].group.color))
                         }
                         val bucket = client.storage["avatar"]
-                        val url = bucket.publicUrl(data[position].completed + ".png") + "?timestamp=" + System.currentTimeMillis()
+                        val url = bucket.publicUrl(data[position].completed + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
+                        Log.e("URL", url)
                         Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(scatterAvaImageView)
                     }
                 }

@@ -3,6 +3,7 @@ package com.example.e_finity.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,11 +26,14 @@ import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.Storage
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.w3c.dom.Text
 
 class HomeFragment : Fragment() {
 
     private var activity: MainActivity?= null
+    var loaded: Boolean = false
+    lateinit var userData: List<UserRead>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,31 +75,52 @@ class HomeFragment : Fragment() {
         bannerImage.visibility = View.GONE
         descriptionHeader.visibility = View.GONE
         descriptionTextView.visibility = View.GONE
-        lifecycleScope.launch {
-            kotlin.runCatching {
-                val userRight = client.postgrest["user"].select {
-                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-                }.decodeList<UserRead>()
-                val editor = sharePreference.edit()
-                editor.putString("ROLE", userRight[0].role)
-                editor.apply()
-                if (userRight[0].role == "Freshman") {
-                    pBar.visibility = View.GONE
-                    headerTitle.visibility = View.VISIBLE
-                    themeTitle.visibility = View.VISIBLE
-                    bannerImage.visibility = View.VISIBLE
-                    descriptionHeader.visibility = View.VISIBLE
-                    descriptionTextView.visibility = View.VISIBLE
+        if (loaded == false) {
+            runBlocking {
+                kotlin.runCatching {
+                    val userRight = client.postgrest["user"].select {
+                        eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+                    }.decodeList<UserRead>()
+                    val editor = sharePreference.edit()
+                    editor.putString("ROLE", userRight[0].role)
+                    editor.apply()
+                    if (userRight[0].role == "Freshman") {
+                        pBar.visibility = View.GONE
+                        headerTitle.visibility = View.VISIBLE
+                        themeTitle.visibility = View.VISIBLE
+                        bannerImage.visibility = View.VISIBLE
+                        descriptionHeader.visibility = View.VISIBLE
+                        descriptionTextView.visibility = View.VISIBLE
+                    }
+                    else {
+                        pBar.visibility = View.GONE
+                        headerTitle.setText("Welcome Back \nLeader!")
+                        headerTitle.visibility = View.VISIBLE
+                        themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
+                        themeTitle.visibility = View.VISIBLE
+                    }
+                    loaded = true
+                    userData = userRight
+                }.onFailure {
+                    Toast.makeText(context, "There is no internet access / Server is down (App may crash)", Toast.LENGTH_LONG).show()
                 }
-                else {
-                    pBar.visibility = View.GONE
-                    headerTitle.setText("Welcome Back \nLeader!")
-                    headerTitle.visibility = View.VISIBLE
-                    themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
-                    themeTitle.visibility = View.VISIBLE
-                }
-            }.onFailure {
-                Toast.makeText(context, "There is no internet access / Server is down (App may crash)", Toast.LENGTH_LONG).show()
+            }
+        }
+        else {
+            if (userData[0].role == "Freshman") {
+                pBar.visibility = View.GONE
+                headerTitle.visibility = View.VISIBLE
+                themeTitle.visibility = View.VISIBLE
+                bannerImage.visibility = View.VISIBLE
+                descriptionHeader.visibility = View.VISIBLE
+                descriptionTextView.visibility = View.VISIBLE
+            }
+            else {
+                pBar.visibility = View.GONE
+                headerTitle.setText("Welcome Back \nLeader!")
+                headerTitle.visibility = View.VISIBLE
+                themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
+                themeTitle.visibility = View.VISIBLE
             }
         }
 

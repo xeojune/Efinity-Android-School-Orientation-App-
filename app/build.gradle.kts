@@ -72,4 +72,5 @@ dependencies {
     implementation("com.github.antonpopoff:colorwheel:1.1.13")
     implementation("io.github.jan-tennert.supabase:realtime-kt:1.2.0")
 
+
 }

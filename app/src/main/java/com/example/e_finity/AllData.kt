@@ -1,5 +1,7 @@
 package com.example.e_finity
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.android.material.color.utilities.Score
 import kotlinx.serialization.Serializable
 

@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
+import com.example.e_finity.R
 import com.example.e_finity.UserRead
 import com.example.e_finity.databinding.ActivityLeaderloginBinding
 import io.github.jan.supabase.SupabaseClient
@@ -81,6 +82,7 @@ class LeaderLoginActivity: AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
+        overridePendingTransition(org.koin.android.R.anim.abc_fade_out, androidx.transition.R.anim.abc_fade_in)
     }
 
     private fun forgotPage() {

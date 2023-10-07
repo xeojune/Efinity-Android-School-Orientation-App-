@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.fragment.NavHostFragment
@@ -27,7 +28,9 @@ import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.Storage
+import kotlinx.coroutines.launch
 import java.math.BigInteger
 
 class MainActivity : AppCompatActivity() {
@@ -43,6 +46,16 @@ class MainActivity : AppCompatActivity() {
 
         val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val sess = sharePreference.getString("SESSION", "").toString()
+
+//        val client = getclient()
+//        lifecycleScope.launch {
+//            kotlin.runCatching {
+//                val Userdata = client.postgrest["user"].select {
+//                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+//                }.decodeList<UserRead>()
+//            }
+//        }
+
 
         if (sess == "") {
             movePage()
