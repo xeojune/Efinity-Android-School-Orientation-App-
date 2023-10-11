@@ -1,67 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.06"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.18"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.23"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.55"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.6"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.75"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.8"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fhguideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fvguideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/fvguideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.95"/>
+
+
     <TextView
         android:id="@+id/headerTitle"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
-        android:paddingLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="Welcome \nFreshman!"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline2"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline" />
 
     <TextView
         android:id="@+id/themeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="165dp"
-        android:paddingLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="EFINITY'23 THEME"
         android:textSize="13sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline3"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline2" />
 
     <ImageView
         android:id="@+id/bannerImage"
-        android:layout_width="370dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="205dp"
-        android:src="@drawable/efinitybanner"/>
+        android:src="@drawable/efinitybanner"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline3" />
 
     <TextView
         android:id="@+id/descriptionHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="415dp"
-        android:paddingLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="Description"
         android:textSize="13sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline5"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline4" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline6"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline5">
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/homeDescription"
+            android:textSize="10sp"
+            android:scrollbars="vertical" />
+
+    </ScrollView>
+
 
     <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="450dp"
-        android:paddingLeft="20dp"
-        android:text="@string/homeDescription"
-        android:textSize="10sp"/>
+        android:id="@+id/housesHeader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Houses Colors - Names"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline7"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline6" />
+
+    <TextView
+        android:id="@+id/housesTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/houseDescription"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline8"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline7" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/groupRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/fhguideline8"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="@+id/fvguideline"
+        app:layout_constraintTop_toTopOf="@+id/fhguideline3" />
 
     <Button
         android:id="@+id/manageteamButton"
@@ -69,10 +192,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:backgroundTint="#545F71"
         android:text="Manage Team"
-        android:backgroundTint="#545F71" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -80,7 +205,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="326dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-</RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

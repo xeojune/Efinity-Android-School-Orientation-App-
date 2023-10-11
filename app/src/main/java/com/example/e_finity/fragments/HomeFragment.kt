@@ -14,16 +14,24 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.e_finity.GroupAdd
+import com.example.e_finity.GroupRead
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
 import com.example.e_finity.UserRead
+import com.example.e_finity.adapter.GroupAdapter
+import com.example.e_finity.adapter.ScatterAdapter
 import com.example.e_finity.login.LogOrSignActivity
+import com.example.e_finity.scatterClass
 import com.example.e_finity.teams.TeamActivity
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.query.Order
 import io.github.jan.supabase.storage.Storage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -62,6 +70,24 @@ class HomeFragment : Fragment() {
             }
         }
 
+        fun getGroupData() {
+            val client = getclient()
+            lifecycleScope.launch {
+                val groupDataResponse = client.postgrest["Orientation Group"].select {
+                    order("id", Order.ASCENDING)
+                }
+                val groupData = groupDataResponse.decodeList<GroupRead>()
+                val filteredgroupData = groupData.filter { it.name != "None" }
+                val adapter = GroupAdapter(filteredgroupData)
+                val groupRecycler = view.findViewById<RecyclerView>(R.id.groupRecycler)
+                groupRecycler.adapter = adapter
+                groupRecycler.layoutManager = GridLayoutManager(context, 2)
+            }
+        }
+
+
+        getGroupData()
+
         val client = getclient()
         val manageTeamBtn = view.findViewById<Button>(R.id.manageteamButton)
         val pBar = view.findViewById<ProgressBar>(R.id.progressBar)
@@ -70,11 +96,15 @@ class HomeFragment : Fragment() {
         val bannerImage = view.findViewById<ImageView>(R.id.bannerImage)
         val descriptionHeader = view.findViewById<TextView>(R.id.descriptionHeader)
         val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
+        val houseHeader = view.findViewById<TextView>(R.id.housesHeader)
+        val houseTextView = view.findViewById<TextView>(R.id.housesTextView)
         headerTitle.visibility = View.GONE
         themeTitle.visibility = View.GONE
         bannerImage.visibility = View.GONE
         descriptionHeader.visibility = View.GONE
         descriptionTextView.visibility = View.GONE
+        houseHeader.visibility = View.GONE
+        houseTextView.visibility = View.GONE
         if (loaded == false) {
             runBlocking {
                 kotlin.runCatching {
@@ -114,6 +144,8 @@ class HomeFragment : Fragment() {
                 bannerImage.visibility = View.VISIBLE
                 descriptionHeader.visibility = View.VISIBLE
                 descriptionTextView.visibility = View.VISIBLE
+                houseHeader.visibility = View.VISIBLE
+                houseTextView.visibility = View.GONE
             }
             else {
                 pBar.visibility = View.GONE
