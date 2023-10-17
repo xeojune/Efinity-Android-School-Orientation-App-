@@ -26,7 +26,15 @@ import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.postgrest.query.Order
+import io.github.jan.supabase.realtime.Realtime
+import io.github.jan.supabase.realtime.createChannel
+import io.github.jan.supabase.realtime.decodeJoinsAs
+import io.github.jan.supabase.realtime.decodeLeavesAs
+import io.github.jan.supabase.realtime.presenceChangeFlow
+import io.github.jan.supabase.realtime.realtime
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 import java.math.BigInteger
 
 @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
@@ -39,6 +47,7 @@ class ScatterTagActivity: NfcAct() {
         binding = ActivityScatterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getScatterData()
+
     }
 
 //    override fun onPause() {
@@ -166,6 +175,7 @@ class ScatterTagActivity: NfcAct() {
         ) {
             install(Postgrest)
             install(GoTrue)
+            install(Realtime)
         }
     }
 

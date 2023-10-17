@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-sdk android:minSdkVersion="10" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
-
-    <uses-sdk android:minSdkVersion="10" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +20,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Efinity"
         tools:targetApi="31">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDvo1sf-xMRwLhmMk71LFRmsgBpZalrN44" />
+
+        <activity
+            android:name=".games.BossFightActivity"
+            android:exported="false"
+            android:label="@string/title_activity_boss_fight" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -31,20 +52,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.LogOrSignActivity"></activity>
-        <activity android:name=".login.LeaderLoginActivity"></activity>
-        <activity android:name=".login.leaderSignupActivity"></activity>
-        <activity android:name=".login.LeaderForgotActivity"></activity>
-        <activity android:name=".teams.TeamActivity"></activity>
-        <activity android:name=".teams.JoinTeamActivity"></activity>
-        <activity android:name=".teams.MakeTeamActivity"></activity>
-        <activity android:name=".games.treasureHuntActivity"></activity>
-        <activity android:name=".games.AddTreasureActivity"></activity>
-        <activity android:name=".games.ScatterTagActivity"></activity>
-        <activity android:name=".games.AddScatterActivity"></activity>
-        <activity android:name=".login.ResetPassActivity"
+        <activity android:name=".login.LogOrSignActivity" />
+        <activity android:name=".login.LeaderLoginActivity" />
+        <activity android:name=".login.leaderSignupActivity" />
+        <activity android:name=".login.LeaderForgotActivity" />
+        <activity android:name=".teams.TeamActivity" />
+        <activity android:name=".teams.JoinTeamActivity" />
+        <activity android:name=".teams.MakeTeamActivity" />
+        <activity android:name=".games.treasureHuntActivity" />
+        <activity android:name=".games.AddTreasureActivity" />
+        <activity android:name=".games.ScatterTagActivity" />
+        <activity android:name=".games.AddScatterActivity" />
+        <activity
+            android:name=".login.ResetPassActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -56,7 +77,6 @@
                     android:pathPrefix="/path"
                     android:scheme="https" />
             </intent-filter>
-
         </activity>
     </application>
 

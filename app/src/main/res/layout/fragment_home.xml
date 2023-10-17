@@ -88,7 +88,6 @@
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent="0.95"/>
 
-
     <TextView
         android:id="@+id/headerTitle"
         android:layout_width="0dp"
@@ -186,29 +185,7 @@
         app:layout_constraintStart_toStartOf="@+id/fvguideline"
         app:layout_constraintTop_toTopOf="@+id/fhguideline3" />
 
-    <Button
-        android:id="@+id/manageteamButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="#545F71"
-        android:text="Manage Team"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fvguideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 

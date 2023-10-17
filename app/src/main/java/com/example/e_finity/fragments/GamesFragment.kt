@@ -13,6 +13,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.lifecycleScope
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
+import com.example.e_finity.games.BossFightActivity
 import com.example.e_finity.games.ScatterTagActivity
 import com.example.e_finity.games.treasureHuntActivity
 import com.example.e_finity.teams.TeamActivity
@@ -59,6 +60,12 @@ class GamesFragment : Fragment() {
         scatterPlayBtn.setOnClickListener{
             requireActivity().run {
                 startActivity(Intent(this, ScatterTagActivity::class.java))
+            }
+        }
+        val bossPlayBtn = view.findViewById<AppCompatButton>(R.id.bossPlayBtn)
+        bossPlayBtn.setOnClickListener{
+            requireActivity().run {
+                startActivity(Intent(this, BossFightActivity::class.java))
             }
         }
     }

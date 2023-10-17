@@ -84,7 +84,7 @@ class ScatterAdapter(var data: List<scatterClass>): RecyclerView.Adapter<Scatter
                         val bucket = client.storage["avatar"]
                         val url = bucket.publicUrl(data[position].completed + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
                         Log.e("URL", url)
-                        Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(scatterAvaImageView)
+                        Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(scatterAvaImageView)
                     }
                 }
                 scatterAvaPoints.text = data[position].points.toString() + " points"

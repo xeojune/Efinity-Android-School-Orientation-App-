@@ -89,8 +89,6 @@ class HomeFragment : Fragment() {
         getGroupData()
 
         val client = getclient()
-        val manageTeamBtn = view.findViewById<Button>(R.id.manageteamButton)
-        val pBar = view.findViewById<ProgressBar>(R.id.progressBar)
         val headerTitle = view.findViewById<TextView>(R.id.headerTitle)
         val themeTitle = view.findViewById<TextView>(R.id.themeTitle)
         val bannerImage = view.findViewById<ImageView>(R.id.bannerImage)
@@ -98,6 +96,7 @@ class HomeFragment : Fragment() {
         val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
         val houseHeader = view.findViewById<TextView>(R.id.housesHeader)
         val houseTextView = view.findViewById<TextView>(R.id.housesTextView)
+        val groupRecycler = view.findViewById<RecyclerView>(R.id.groupRecycler)
         headerTitle.visibility = View.GONE
         themeTitle.visibility = View.GONE
         bannerImage.visibility = View.GONE
@@ -105,6 +104,7 @@ class HomeFragment : Fragment() {
         descriptionTextView.visibility = View.GONE
         houseHeader.visibility = View.GONE
         houseTextView.visibility = View.GONE
+        groupRecycler.visibility = View.GONE
         if (loaded == false) {
             runBlocking {
                 kotlin.runCatching {
@@ -115,19 +115,19 @@ class HomeFragment : Fragment() {
                     editor.putString("ROLE", userRight[0].role)
                     editor.apply()
                     if (userRight[0].role == "Freshman") {
-                        pBar.visibility = View.GONE
                         headerTitle.visibility = View.VISIBLE
                         themeTitle.visibility = View.VISIBLE
                         bannerImage.visibility = View.VISIBLE
                         descriptionHeader.visibility = View.VISIBLE
                         descriptionTextView.visibility = View.VISIBLE
+                        houseTextView.visibility = View.VISIBLE
                     }
                     else {
-                        pBar.visibility = View.GONE
                         headerTitle.setText("Welcome Back \nLeader!")
                         headerTitle.visibility = View.VISIBLE
                         themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
                         themeTitle.visibility = View.VISIBLE
+                        groupRecycler.visibility = View.VISIBLE
                     }
                     loaded = true
                     userData = userRight
@@ -138,21 +138,20 @@ class HomeFragment : Fragment() {
         }
         else {
             if (userData[0].role == "Freshman") {
-                pBar.visibility = View.GONE
                 headerTitle.visibility = View.VISIBLE
                 themeTitle.visibility = View.VISIBLE
                 bannerImage.visibility = View.VISIBLE
                 descriptionHeader.visibility = View.VISIBLE
                 descriptionTextView.visibility = View.VISIBLE
                 houseHeader.visibility = View.VISIBLE
-                houseTextView.visibility = View.GONE
+                houseTextView.visibility = View.VISIBLE
             }
             else {
-                pBar.visibility = View.GONE
                 headerTitle.setText("Welcome Back \nLeader!")
                 headerTitle.visibility = View.VISIBLE
                 themeTitle.setText("REGISTER YOUR MEMBERS BY SUB GROUP")
                 themeTitle.visibility = View.VISIBLE
+                groupRecycler.visibility = View.VISIBLE
             }
         }
 

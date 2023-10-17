@@ -82,7 +82,7 @@ class LeaderLoginActivity: AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        overridePendingTransition(org.koin.android.R.anim.abc_fade_out, androidx.transition.R.anim.abc_fade_in)
+        overridePendingTransition(org.koin.android.R.anim.abc_fade_in, androidx.transition.R.anim.abc_fade_out)
     }
 
     private fun forgotPage() {

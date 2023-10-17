@@ -50,7 +50,7 @@ class GroupAdapter(var data: List<GroupRead>): RecyclerView.Adapter<GroupAdapter
                 val bucket = client.storage["avatar"]
                 groupAvaName.text = data[position].name
                 val url = bucket.publicUrl(data[position].name + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(groupAvaImageView)
+                Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(groupAvaImageView)
 //                if (data[position].name == "None") {
 //                    groupLayout.visibility = View.GONE
 //                    groupLayout.layoutParams = ViewGroup.LayoutParams(0,0)

@@ -8,5 +8,6 @@
         \n\nNow, the weighty responsibility falls upon you, valiant protectors, to rise and safeguard the very essence of our existence—the Sun itself. The destiny of our celestial home hinges on your unwavering dedication and collective strength.</string>
 
     <string name="houseDescription">Black - Carolan \nRed - Deimos \nYellow - Venera \nGreen - Theos \nBlue - Triton \nPurple - Rhea</string>
+    <string name="title_activity_boss_fight">BossFightActivity</string>
 
 </resources>

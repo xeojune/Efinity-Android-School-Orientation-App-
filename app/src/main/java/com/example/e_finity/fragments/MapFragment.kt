@@ -10,6 +10,9 @@ import android.webkit.WebViewClient
 import com.example.e_finity.MainActivity
 import com.example.e_finity.R
 
+private lateinit var webView: WebView
+private lateinit var webviewstate: Bundle
+
 class MapFragment : Fragment() {
 
     private var activity: MainActivity?= null
@@ -24,12 +27,25 @@ class MapFragment : Fragment() {
         return view
     }
 
+    override fun onPause() {
+        super.onPause()
+        webviewstate = Bundle()
+        webView.saveState(webviewstate)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val webView = view.findViewById<WebView>(R.id.webView)
+
+        webView = view.findViewById<WebView>(R.id.webView)
         webView.webViewClient = WebViewClient()
 
-        webView.loadUrl("https://maps.ntu.edu.sg/#/ntu/d386ffa80e4e46f286d17f08/poi/search")
+        if (savedInstanceState == null) {
+            webView.loadUrl("https://maps.ntu.edu.sg/#/ntu/d386ffa80e4e46f286d17f08/poi/search")
+        }
+        else {
+            webView.restoreState(webviewstate)
+        }
+
         webView.settings.javaScriptEnabled = true
         webView.settings.setSupportZoom(true)
 

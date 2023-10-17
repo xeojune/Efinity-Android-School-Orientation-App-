@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -208,8 +209,8 @@ class ProfileFragment : Fragment() {
                     shieldRelative.visibility = View.VISIBLE
                     dartRelative.visibility = View.VISIBLE
 
-                    url = bucket.publicUrl(sharePreference.getString("SESSION", "").toString() + ".png") + "?timestamp=" + System.currentTimeMillis()
-                    Glide.with(view).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
+                    url = bucket.publicUrl(sharePreference.getString("SESSION", "").toString() + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
+                    Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
 
                     userData = userinfo
                     loaded = true
@@ -217,7 +218,7 @@ class ProfileFragment : Fragment() {
             }
         }
         else {
-            Glide.with(view).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
+            Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
             avatarBorder.setStrokeColor(Color.parseColor("#"+userData[0].group.color))
             name.text = userData[0].full_name
             name.setTextColor(Color.parseColor("#"+userData[0].group.color))
@@ -243,6 +244,26 @@ class ProfileFragment : Fragment() {
             heartRelative.visibility = View.VISIBLE
             shieldRelative.visibility = View.VISIBLE
             dartRelative.visibility = View.VISIBLE
+
+            Handler().postDelayed({
+                avatarBorder.setStrokeColor(Color.parseColor("#"+userData[0].group.color))
+                name.text = userData[0].full_name
+                name.setTextColor(Color.parseColor("#"+userData[0].group.color))
+                oGroup.text = userData[0].group.name
+                oGroup.setTextColor(Color.parseColor("#"+userData[0].group.color))
+                contactNumber.text = userData[0].phone_num
+                contactNumber.setTextColor(Color.parseColor("#"+userData[0].group.color))
+                role.text = userData[0].role
+                role.setTextColor(Color.parseColor("#"+userData[0].group.color))
+                points.text = userData[0].score.toString()
+                points.setTextColor(Color.parseColor("#"+userData[0].group.color))
+
+                //For User Stats
+                attpts.text = userData[0].uniqueID[0].Attack.toString()
+                hp.text = userData[0].uniqueID[0].HP.toString()
+                defpts.text = userData[0].uniqueID[0].Defence.toString()
+                accpts.text = userData[0].uniqueID[0].Accuracy.toString()
+            }, 1000)
         }
 
     }

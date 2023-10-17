@@ -58,6 +58,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bossPlayBtn"
                 android:layout_width="250dp"
                 android:layout_height="100dp"
                 android:layout_alignParentTop="true"
