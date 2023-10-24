@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -46,6 +48,8 @@ class MakeTeamActivity: AppCompatActivity() {
 
         val client = getclient()
         val bucket = client.storage["avatar"]
+        binding.colorWheel.visibility = View.GONE
+        binding.colorWheelBtn.visibility = View.GONE
         var imagechanged = 0
         val changeImage = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -56,6 +60,10 @@ class MakeTeamActivity: AppCompatActivity() {
                 imagechanged = 1
                 binding.uploadImage.setImageURI(imgUri)
             }
+        }
+
+        binding.colorWheelBtn.setOnClickListener {
+            binding.colorWheel.visibility = View.VISIBLE
         }
 
         binding.uploadImage.setOnClickListener{
@@ -71,12 +79,18 @@ class MakeTeamActivity: AppCompatActivity() {
                 Toast.makeText(this, "Upload an Image", Toast.LENGTH_SHORT).show()
             }
             else {
-                uploadImg()
-                addgrouptable()
-                Toast.makeText(this,"Successfully created group", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                startActivity(intent)
+                try {
+                    binding.imageStroke.setStrokeColor(Color.parseColor(binding.colorEditText.text.toString()))
+                    uploadImg()
+                    addgrouptable()
+                    Toast.makeText(this,"Successfully created group", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    startActivity(intent)
+                }
+                catch (e: Exception) {
+                    Toast.makeText(this,"Invalid color",Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
@@ -96,19 +110,19 @@ class MakeTeamActivity: AppCompatActivity() {
         val client = getclient()
         val group = GroupAdd(
             name = binding.teamnameEditText.text.toString(),
-            color = binding.colorEditText.text.toString()
+            color = binding.colorEditText.text.toString().replace("#", "")
         )
         val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         lifecycleScope.launch {
             kotlin.runCatching {
                 client.postgrest["Orientation Group"].insert(group, returning = Returning.MINIMAL)
-                client.postgrest["user"].update(
-                    {
-                        set("group", binding.teamnameEditText.text.toString())
-                    }
-                ) {
-                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
-                }
+//                client.postgrest["user"].update(
+//                    {
+//                        set("group", binding.teamnameEditText.text.toString())
+//                    }
+//                ) {
+//                    eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+//                }
             }
         }
     }

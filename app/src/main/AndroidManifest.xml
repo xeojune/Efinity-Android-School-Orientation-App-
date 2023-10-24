@@ -56,6 +56,7 @@
         <activity android:name=".login.LeaderLoginActivity" />
         <activity android:name=".login.leaderSignupActivity" />
         <activity android:name=".login.LeaderForgotActivity" />
+        <activity android:name=".login.FreshmanLoginActivity"/>
         <activity android:name=".teams.TeamActivity" />
         <activity android:name=".teams.JoinTeamActivity" />
         <activity android:name=".teams.MakeTeamActivity" />

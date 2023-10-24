@@ -130,3 +130,13 @@ data class uReadShort(
     val full_name: String,
     val group: orient
 )
+
+@Serializable
+data class bossesClass(
+    val id: Int,
+    val bossName: String,
+    val bossPower: Int,
+    val bossDesc: String,
+    val lat: Double,
+    val log: Double
+)

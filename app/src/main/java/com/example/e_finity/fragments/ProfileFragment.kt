@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -196,6 +197,11 @@ class ProfileFragment : Fragment() {
                     points.setTextColor(Color.parseColor("#"+userinfo[0].group.color))
 
                     //For User Stats
+                    attackRelative.setBackgroundColor(Color.parseColor("#CC"+userinfo[0].group.color))
+                    heartRelative.setBackgroundColor(Color.parseColor("#99"+userinfo[0].group.color))
+                    shieldRelative.setBackgroundColor(Color.parseColor("#66"+userinfo[0].group.color))
+                    dartRelative.setBackgroundColor(Color.parseColor("#33"+userinfo[0].group.color))
+
                     attpts.text = userinfo[0].uniqueID[0].Attack.toString()
                     hp.text = userinfo[0].uniqueID[0].HP.toString()
                     defpts.text = userinfo[0].uniqueID[0].Defence.toString()
@@ -210,7 +216,7 @@ class ProfileFragment : Fragment() {
                     dartRelative.visibility = View.VISIBLE
 
                     url = bucket.publicUrl(sharePreference.getString("SESSION", "").toString() + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                    Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
+                    Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.avatar).into(avatarimageView)
 
                     userData = userinfo
                     loaded = true
@@ -218,7 +224,7 @@ class ProfileFragment : Fragment() {
             }
         }
         else {
-            Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
+            Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.avatar).into(avatarimageView)
             avatarBorder.setStrokeColor(Color.parseColor("#"+userData[0].group.color))
             name.text = userData[0].full_name
             name.setTextColor(Color.parseColor("#"+userData[0].group.color))
@@ -232,6 +238,11 @@ class ProfileFragment : Fragment() {
             points.setTextColor(Color.parseColor("#"+userData[0].group.color))
 
             //For User Stats
+            attackRelative.setBackgroundColor(Color.parseColor("#CC"+userData[0].group.color))
+            heartRelative.setBackgroundColor(Color.parseColor("#99"+userData[0].group.color))
+            shieldRelative.setBackgroundColor(Color.parseColor("#66"+userData[0].group.color))
+            dartRelative.setBackgroundColor(Color.parseColor("#33"+userData[0].group.color))
+
             attpts.text = userData[0].uniqueID[0].Attack.toString()
             hp.text = userData[0].uniqueID[0].HP.toString()
             defpts.text = userData[0].uniqueID[0].Defence.toString()
@@ -259,6 +270,11 @@ class ProfileFragment : Fragment() {
                 points.setTextColor(Color.parseColor("#"+userData[0].group.color))
 
                 //For User Stats
+                attackRelative.setBackgroundColor(Color.parseColor("#CC"+userData[0].group.color))
+                heartRelative.setBackgroundColor(Color.parseColor("#99"+userData[0].group.color))
+                shieldRelative.setBackgroundColor(Color.parseColor("#66"+userData[0].group.color))
+                dartRelative.setBackgroundColor(Color.parseColor("#33"+userData[0].group.color))
+
                 attpts.text = userData[0].uniqueID[0].Attack.toString()
                 hp.text = userData[0].uniqueID[0].HP.toString()
                 defpts.text = userData[0].uniqueID[0].Defence.toString()

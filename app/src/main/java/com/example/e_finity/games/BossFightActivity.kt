@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.example.e_finity.R
+import com.example.e_finity.bossesClass
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -29,12 +31,16 @@ import com.example.e_finity.databinding.ActivityBossFightBinding
 import com.example.e_finity.fragments.url
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.GoTrue
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -106,6 +112,18 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.setOnMarkerClickListener { marker: Marker ->
+            var bossLoc = Location("boss")
+            bossLoc.latitude = marker.position.latitude
+            bossLoc.longitude = marker.position.longitude
+            if (locationUser!!.distanceTo(bossLoc) < 30) {
+                Toast.makeText(this, marker.tag.toString(), Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this, "You need to be closer to the boss to fight it", Toast.LENGTH_LONG).show()
+            }
+            false
+        }
     }
 
     var locationUser : Location? = null
@@ -152,7 +170,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
 //                        val sydney = LatLng(1.34835, 103.68313)
                         val sydney = LatLng(locationUser!!.latitude, locationUser!!.longitude)
 //                        mMap.addMarker(MarkerOptions().position(sydney).title("NTU"))
-                        Glide.with(this@BossFightActivity).asBitmap().load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(
+                        Glide.with(applicationContext).asBitmap().load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(
                             object: CustomTarget<Bitmap>(100,100) {
                                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                                     mMap.addMarker(MarkerOptions().position(sydney).title("NTU").icon(BitmapDescriptorFactory.fromBitmap(resource)))
@@ -165,6 +183,8 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                         )
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,18f))
                         mMap.uiSettings.isZoomControlsEnabled = true
+
+                        loadBosses()
                     }
                     Thread.sleep(1000)
                 }
@@ -185,5 +205,33 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
             install(GoTrue)
             install(Storage)
         }
+    }
+
+    fun loadBosses() {
+        val client = getclient()
+        MainScope().launch {
+            val bossesData = client.postgrest["bosses"].select() {
+            }.decodeList<bossesClass>()
+
+            if (bossesData.size != 0) {
+                for (i in 0..bossesData.size-1) {
+                    val bossLoc = LatLng(bossesData[i].lat, bossesData[i].log)
+                    val url2 = "https://freepngimg.com/download/pokemon/117725-charmander-free-hd-image.png"
+                    Glide.with(applicationContext).asBitmap().load(url2).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(
+                        object: CustomTarget<Bitmap>(250,250) {
+                            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                                val marker = mMap.addMarker(MarkerOptions().position(bossLoc).title(bossesData[i].bossName).icon(BitmapDescriptorFactory.fromBitmap(resource)))
+                                marker!!.tag = bossesData[i].bossPower
+                            }
+
+                            override fun onLoadCleared(placeholder: Drawable?) {
+                                val marker = mMap.addMarker(MarkerOptions().position(bossLoc).title(bossesData[i].bossName).icon(BitmapDescriptorFactory.fromResource(R.drawable.avatar)))
+                            }
+                        }
+                    )
+                }
+            }
+        }
+
     }
 }

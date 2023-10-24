@@ -1,5 +1,8 @@
 package com.example.e_finity.adapter
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +15,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.e_finity.GroupAdd
 import com.example.e_finity.GroupRead
 import com.example.e_finity.R
+import com.example.e_finity.games.AddScatterActivity
 import com.example.e_finity.scatterClass
+import com.example.e_finity.teams.MakeTeamActivity
 import com.google.android.material.card.MaterialCardView
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -49,8 +54,9 @@ class GroupAdapter(var data: List<GroupRead>): RecyclerView.Adapter<GroupAdapter
                 val client = getclient()
                 val bucket = client.storage["avatar"]
                 groupAvaName.text = data[position].name
+                groupAvaBorder.setStrokeColor(Color.parseColor("#"+data[position].color))
                 val url = bucket.publicUrl(data[position].name + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(groupAvaImageView)
+                Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.avatar).into(groupAvaImageView)
 //                if (data[position].name == "None") {
 //                    groupLayout.visibility = View.GONE
 //                    groupLayout.layoutParams = ViewGroup.LayoutParams(0,0)
@@ -58,6 +64,10 @@ class GroupAdapter(var data: List<GroupRead>): RecyclerView.Adapter<GroupAdapter
 
 
 
+            }
+            groupAdd.setOnClickListener{
+                val intent = Intent(context, MakeTeamActivity::class.java)
+                (context as Activity).startActivityForResult(intent, 1000)
             }
         }
     }

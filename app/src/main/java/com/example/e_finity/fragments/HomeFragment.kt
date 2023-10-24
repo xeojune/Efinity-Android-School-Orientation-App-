@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.e_finity.GroupAdd
@@ -81,6 +82,9 @@ class HomeFragment : Fragment() {
                 val adapter = GroupAdapter(filteredgroupData)
                 val groupRecycler = view.findViewById<RecyclerView>(R.id.groupRecycler)
                 groupRecycler.adapter = adapter
+                groupRecycler.setHasFixedSize(true)
+                groupRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
+                groupRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
                 groupRecycler.layoutManager = GridLayoutManager(context, 2)
             }
         }
