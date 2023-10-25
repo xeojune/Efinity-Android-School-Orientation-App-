@@ -32,7 +32,8 @@ data class UserRead(
 data class GroupRead(
     val id: Int,
     val name: String,
-    val color: String
+    val color: String,
+    val timemodi: Int
 )
 
 @Serializable

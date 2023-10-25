@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.35"/>
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vguideline4"
@@ -149,6 +149,22 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent="0.75"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.55"/>
 
     <TextView
         android:id="@+id/textView"
@@ -296,6 +312,32 @@
         app:layout_constraintEnd_toStartOf="@+id/vguideline2"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/vguideline3"
+        app:layout_constraintTop_toTopOf="@+id/hguideline12"
+        app:layout_constraintVertical_bias="0.834" />
+
+    <Button
+        android:id="@+id/teamDeleteButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#FF0000"
+        android:text="Delete"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline13"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline6"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline12"
+        app:layout_constraintVertical_bias="0.834" />
+
+    <Button
+        android:id="@+id/teamEditButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="#545f71"
+        android:text="Edit"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline13"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/vguideline7"
         app:layout_constraintTop_toTopOf="@+id/hguideline12"
         app:layout_constraintVertical_bias="0.834" />
 

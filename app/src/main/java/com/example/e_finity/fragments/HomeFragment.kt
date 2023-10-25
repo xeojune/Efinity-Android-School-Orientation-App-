@@ -3,6 +3,7 @@ package com.example.e_finity.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +27,7 @@ import com.example.e_finity.adapter.GroupAdapter
 import com.example.e_finity.adapter.ScatterAdapter
 import com.example.e_finity.login.LogOrSignActivity
 import com.example.e_finity.scatterClass
+import com.example.e_finity.teams.MakeTeamActivity
 import com.example.e_finity.teams.TeamActivity
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -37,6 +39,8 @@ import io.github.jan.supabase.storage.Storage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.w3c.dom.Text
+
+var homeLoad: Boolean = false
 
 class HomeFragment : Fragment() {
 
@@ -52,6 +56,58 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val addState = data?.getStringExtra("State")
+        if (addState == "Added" || addState == "Updated" || addState == "Deleted") {
+            homeLoad = false
+            Toast.makeText(context,"Test",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fun getclient(): SupabaseClient {
+            return createSupabaseClient(
+                supabaseUrl = "https://nabbsmcfsskdwjncycnk.supabase.co",
+                supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5hYmJzbWNmc3NrZHdqbmN5Y25rIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTM5MDM3ODksImV4cCI6MjAwOTQ3OTc4OX0.dRVk2u91mLhSMaA1s0FSyIFwnxe2Y3TPdZZ4Shc9mAY"
+            ) {
+                install(Postgrest)
+                install(GoTrue)
+                install(Storage)
+            }
+        }
+        fun getGroupData() {
+            val client = getclient()
+            lifecycleScope.launch {
+                val groupDataResponse = client.postgrest["Orientation Group"].select {
+                    order("id", Order.ASCENDING)
+                }
+                val groupData = groupDataResponse.decodeList<GroupRead>()
+                val filteredgroupData = groupData.filter { it.name != "None" }
+                val adapter = GroupAdapter(filteredgroupData)
+                val groupRecycler = view?.findViewById<RecyclerView>(R.id.groupRecycler)
+                if (groupRecycler != null) {
+                    groupRecycler.adapter = adapter
+                }
+                if (groupRecycler != null) {
+                    groupRecycler.setHasFixedSize(true)
+                }
+                if (groupRecycler != null) {
+                    groupRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL))
+                }
+                if (groupRecycler != null) {
+                    groupRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                }
+                if (groupRecycler != null) {
+                    groupRecycler.layoutManager = GridLayoutManager(context, 2)
+                }
+            }
+        }
+
+        getGroupData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,7 +145,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-
         getGroupData()
 
         val client = getclient()
@@ -109,7 +164,7 @@ class HomeFragment : Fragment() {
         houseHeader.visibility = View.GONE
         houseTextView.visibility = View.GONE
         groupRecycler.visibility = View.GONE
-        if (loaded == false) {
+        if (homeLoad == false ) {
             runBlocking {
                 kotlin.runCatching {
                     val userRight = client.postgrest["user"].select {
@@ -133,7 +188,7 @@ class HomeFragment : Fragment() {
                         themeTitle.visibility = View.VISIBLE
                         groupRecycler.visibility = View.VISIBLE
                     }
-                    loaded = true
+                    homeLoad = true
                     userData = userRight
                 }.onFailure {
                     Toast.makeText(context, "There is no internet access / Server is down (App may crash)", Toast.LENGTH_LONG).show()
