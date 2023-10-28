@@ -164,7 +164,7 @@ class HomeFragment : Fragment() {
         houseHeader.visibility = View.GONE
         houseTextView.visibility = View.GONE
         groupRecycler.visibility = View.GONE
-        if (homeLoad == false ) {
+        if (loaded == false) {
             runBlocking {
                 kotlin.runCatching {
                     val userRight = client.postgrest["user"].select {
@@ -172,6 +172,7 @@ class HomeFragment : Fragment() {
                     }.decodeList<UserRead>()
                     val editor = sharePreference.edit()
                     editor.putString("ROLE", userRight[0].role)
+                    editor.putString("GROUP", userRight[0].group)
                     editor.apply()
                     if (userRight[0].role == "Freshman") {
                         headerTitle.visibility = View.VISIBLE
@@ -188,7 +189,7 @@ class HomeFragment : Fragment() {
                         themeTitle.visibility = View.VISIBLE
                         groupRecycler.visibility = View.VISIBLE
                     }
-                    homeLoad = true
+                    loaded = true
                     userData = userRight
                 }.onFailure {
                     Toast.makeText(context, "There is no internet access / Server is down (App may crash)", Toast.LENGTH_LONG).show()

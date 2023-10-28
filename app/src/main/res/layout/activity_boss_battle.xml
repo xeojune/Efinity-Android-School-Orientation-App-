@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.85"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <ImageView
+        android:id="@+id/fightBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:src="@drawable/bossfightbg"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/battleshadow"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline6"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline2"
+        app:layout_constraintTop_toTopOf="@+id/hguideline5"
+        app:layout_constraintVertical_bias="1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/battleshadow"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline2"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline3"
+        app:layout_constraintVertical_bias="1" />
+
+    <ImageView
+        android:id="@+id/bossSprite"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ntuboss"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline2"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline3" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/playerSpriteCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:cardCornerRadius="75dp"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline6"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline2"
+        app:layout_constraintTop_toTopOf="@+id/hguideline5">
+
+        <ImageView
+            android:id="@+id/playerSprite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleX="-1" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintStart_toStartOf="@+id/vguideline2"
+        app:layout_constraintTop_toTopOf="@+id/hguideline3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+        android:id="@+id/bossHp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="2"
+        android:scaleY="3"
+        android:progressBackgroundTint="#FF0000"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintStart_toStartOf="@+id/vguideline2"
+        app:layout_constraintTop_toTopOf="@+id/hguideline3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

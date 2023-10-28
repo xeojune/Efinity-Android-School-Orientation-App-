@@ -79,6 +79,9 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
+        <activity android:name=".teams.MemberAddActivity"/>
+        <activity android:name=".games.BossEncounterActivity"/>
+        <activity android:name=".games.BossBattleActivity"/>
     </application>
 
 </manifest>

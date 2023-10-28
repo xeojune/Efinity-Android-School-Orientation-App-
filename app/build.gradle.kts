@@ -74,6 +74,7 @@ dependencies {
     implementation("com.github.antonpopoff:colorwheel:1.1.13")
     implementation("io.github.jan-tennert.supabase:realtime-kt:1.2.0")
     implementation("com.agrawalsuneet.androidlibs:dotsloader:1.4")
+    implementation("com.github.JDevZone:FillProgressLayout:0.0.7")
 
 
 }

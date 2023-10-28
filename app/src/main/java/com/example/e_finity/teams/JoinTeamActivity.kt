@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,9 @@ import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Order
 import io.github.jan.supabase.storage.Storage
 import io.github.jan.supabase.storage.storage
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class JoinTeamActivity: AppCompatActivity() {
     private lateinit var binding: ActivityJointeamBinding
@@ -43,12 +46,20 @@ class JoinTeamActivity: AppCompatActivity() {
         val color = intent.getStringExtra("color")
         val timemodi = intent.getStringExtra("timemodi")
 
+
+
         val url = bucket.publicUrl(name + ".png") + "?timestamp=" + timemodi
         Glide.with(this).load(url).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(
             com.example.e_finity.R.drawable.avatar).into(binding.jgroupAva)
         binding.jgroupName.text = name
         binding.jgroupAvaBorder.setStrokeColor(Color.parseColor("#"+color))
         binding.groupStroke.setStrokeColor(Color.parseColor("#"+color))
+        if (sharePreference.getString("GROUP", "").toString() == name) {
+            binding.teamjoinButton.text = "Leave"
+        }
+        else if (sharePreference.getString("GROUP", "").toString() != "None") {
+            binding.teamjoinButton.visibility = View.GONE
+        }
 
         lifecycleScope.launch {
             val memberDataResponse = client.postgrest["user"].select {
@@ -58,11 +69,72 @@ class JoinTeamActivity: AppCompatActivity() {
                 order("id", Order.ASCENDING)
             }
             val memberData = memberDataResponse.decodeList<UserRead>()
-            val adapter = MemberAdapter(memberData)
+            val adapter = MemberAdapter(memberData, name)
             binding.groupMemberRecycler.adapter = adapter
             binding.groupMemberRecycler.layoutManager = LinearLayoutManager(this@JoinTeamActivity)
         }
 
+        binding.teamjoinButton.setOnClickListener {
+            if (binding.teamjoinButton.text.toString() == "Leave") {
+                runBlocking {
+                    client.postgrest["user"].update ({
+                        set("group", "None")
+                    }) {
+                        eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+                    }
+                }
+                val editor = sharePreference.edit()
+                editor.putString("GROUP", "None")
+                editor.apply()
+                Toast.makeText(this, "You've left the group", Toast.LENGTH_LONG).show()
+                binding.teamjoinButton.text = "Join"
+            }
+            else {
+                runBlocking {
+                    client.postgrest["user"].update ({
+                        set("group", name)
+                    }) {
+                        eq("uniqueID", sharePreference.getString("SESSION", "").toString())
+                    }
+                }
+                val editor = sharePreference.edit()
+                editor.putString("GROUP", name)
+                editor.apply()
+                Toast.makeText(this, "You've joined the group", Toast.LENGTH_LONG).show()
+                binding.teamjoinButton.text = "Leave"
+            }
+            lifecycleScope.launch {
+                val memberDataResponse = client.postgrest["user"].select {
+                    if (name != null) {
+                        eq("group", name)
+                    }
+                    order("id", Order.ASCENDING)
+                }
+                val memberData = memberDataResponse.decodeList<UserRead>()
+                val adapter = MemberAdapter(memberData, name)
+                binding.groupMemberRecycler.adapter = adapter
+                binding.groupMemberRecycler.layoutManager = LinearLayoutManager(this@JoinTeamActivity)
+            }
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val client = getclient()
+        val name = intent.getStringExtra("name")
+        lifecycleScope.launch {
+            val memberDataResponse = client.postgrest["user"].select {
+                if (name != null) {
+                    eq("group", name)
+                }
+                order("id", Order.ASCENDING)
+            }
+            val memberData = memberDataResponse.decodeList<UserRead>()
+            val adapter = MemberAdapter(memberData, name)
+            binding.groupMemberRecycler.adapter = adapter
+            binding.groupMemberRecycler.layoutManager = LinearLayoutManager(this@JoinTeamActivity)
+        }
     }
 
     private fun getclient(): SupabaseClient {

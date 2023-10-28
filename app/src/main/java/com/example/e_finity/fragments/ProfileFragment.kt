@@ -216,7 +216,7 @@ class ProfileFragment : Fragment() {
                     dartRelative.visibility = View.VISIBLE
 
                     url = bucket.publicUrl(sharePreference.getString("SESSION", "").toString() + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                    Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.avatar).into(avatarimageView)
+                    Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
 
                     userData = userinfo
                     loaded = true
@@ -224,7 +224,7 @@ class ProfileFragment : Fragment() {
             }
         }
         else {
-            Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(R.drawable.avatar).into(avatarimageView)
+            Glide.with(view).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(avatarimageView)
             avatarBorder.setStrokeColor(Color.parseColor("#"+userData[0].group.color))
             name.text = userData[0].full_name
             name.setTextColor(Color.parseColor("#"+userData[0].group.color))

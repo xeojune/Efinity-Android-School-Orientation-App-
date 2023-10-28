@@ -133,6 +133,13 @@ data class uReadShort(
 )
 
 @Serializable
+data class memberEdit(
+    val uniqueID: String,
+    val full_name: String,
+    val phone_num: String
+)
+
+@Serializable
 data class bossesClass(
     val id: Int,
     val bossName: String,

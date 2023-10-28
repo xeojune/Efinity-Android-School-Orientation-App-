@@ -42,8 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_end="82dp" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="50dp"
@@ -75,7 +74,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vguideline3"
         app:layout_constraintStart_toStartOf="@+id/vguideline2"
-        app:layout_constraintTop_toTopOf="@+id/hguideline1" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline2" />
+
+    <ImageView
+        android:id="@+id/memberEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_mode_edit_outline_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/vguideline3"
+        app:layout_constraintTop_toTopOf="@+id/hguideline2" />
+
+    <ImageView
+        android:id="@+id/memberAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/memberName"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline2"
+        app:layout_constraintTop_toTopOf="@+id/hguideline2"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 
 

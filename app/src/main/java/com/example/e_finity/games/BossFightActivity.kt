@@ -1,6 +1,7 @@
 package com.example.e_finity.games
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -116,8 +117,10 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
             var bossLoc = Location("boss")
             bossLoc.latitude = marker.position.latitude
             bossLoc.longitude = marker.position.longitude
-            if (locationUser!!.distanceTo(bossLoc) < 30) {
+            if (locationUser!!.distanceTo(bossLoc) < 100) {
                 Toast.makeText(this, marker.tag.toString(), Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, BossEncounterActivity::class.java)
+                startActivity(intent)
             }
             else {
                 Toast.makeText(this, "You need to be closer to the boss to fight it", Toast.LENGTH_LONG).show()
