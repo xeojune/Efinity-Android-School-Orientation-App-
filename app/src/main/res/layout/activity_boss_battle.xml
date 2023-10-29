@@ -54,6 +54,70 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.53" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.56" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vguideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,16 +138,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.85"/>
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vguideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.95"/>
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vguideline5"
@@ -93,13 +155,63 @@
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent="0.05"/>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
     <ImageView
         android:id="@+id/fightBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:src="@drawable/bossfightbg"/>
+        android:scaleType="fitXY"
+        android:src="@drawable/bossfightbg"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -151,33 +263,237 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/hguideline4"
+        android:background="@drawable/battlecard"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline10"
         app:layout_constraintEnd_toStartOf="@+id/vguideline4"
-        app:layout_constraintStart_toStartOf="@+id/vguideline2"
-        app:layout_constraintTop_toTopOf="@+id/hguideline3">
+        app:layout_constraintStart_toStartOf="@+id/vguideline6"
+        app:layout_constraintTop_toTopOf="@+id/hguideline7">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test" />
+    </RelativeLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/bossHpText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="top"
+        android:text="70/100"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline9"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline7"
+        app:layout_constraintTop_toTopOf="@+id/hguideline8" />
+
+    <TextView
+        android:id="@+id/bossName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="top"
+        android:text="Boss"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline10"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline7"
+        app:layout_constraintTop_toTopOf="@+id/hguideline9" />
 
     <ProgressBar
         android:id="@+id/bossHp"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="2"
-        android:scaleY="3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:progressTint="#FF0000"
         android:progressBackgroundTint="#FF0000"
+        android:scaleY="3"
+        android:progress="100"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline8"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline8"
+        app:layout_constraintStart_toStartOf="@+id/vguideline7"
+        app:layout_constraintTop_toTopOf="@+id/hguideline7" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/battlecard"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline12"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline9"
+        app:layout_constraintStart_toStartOf="@+id/vguideline5"
+        app:layout_constraintTop_toTopOf="@+id/hguideline11" />
+
+    <ProgressBar
+        android:id="@+id/playerHp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:progressTint="#3CD27C"
+        android:progressBackgroundTint="#3CD27C"
+        android:progress="100"
+        android:scaleY="3"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline13"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline12"
+        app:layout_constraintStart_toStartOf="@+id/vguideline10"
+        app:layout_constraintTop_toTopOf="@+id/hguideline11" />
+
+    <TextView
+        android:id="@+id/playerHpText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="top"
+        android:text="100/100"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline14"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline12"
+        app:layout_constraintStart_toStartOf="@+id/vguideline10"
+        app:layout_constraintTop_toTopOf="@+id/hguideline13" />
+
+    <TextView
+        android:id="@+id/playerName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="top"
+        android:text="Player"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline12"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline12"
+        app:layout_constraintStart_toStartOf="@+id/vguideline10"
+        app:layout_constraintTop_toTopOf="@+id/hguideline14" />
+
+    <TextView
+        android:id="@+id/playerDmgPts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom|center_horizontal"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="5"
+        android:text="100"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/hguideline4"
-        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline2"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline10" />
+
+    <TextView
+        android:id="@+id/enemyDmgPts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="100"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
+        android:shadowDy="2"
+        android:shadowDx="2"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline6"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
         app:layout_constraintStart_toStartOf="@+id/vguideline2"
-        app:layout_constraintTop_toTopOf="@+id/hguideline3" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline12" />
+
+    <RelativeLayout
+        android:id="@+id/overcard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/battlecard"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline8"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline3"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline8">
+
+        <TextView
+            android:id="@+id/overcardHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:text="You've Won!" />
+
+        <TextView
+            android:id="@+id/AttHpDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overcardHeader"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/DefAccDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AttHpDivider"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/overcardAtt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overcardHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/AttHpDivider"
+            android:paddingRight="20dp"
+            android:text="Att: " />
+
+        <TextView
+            android:id="@+id/overcardHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overcardHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/AttHpDivider"
+            android:paddingLeft="20dp"
+            android:text="Hp: " />
+
+        <TextView
+            android:id="@+id/overcardDef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AttHpDivider"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/DefAccDivider"
+            android:paddingRight="20dp"
+            android:text="Def: " />
+
+        <TextView
+            android:id="@+id/overcardAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/AttHpDivider"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@id/DefAccDivider"
+            android:paddingLeft="20dp"
+            android:text="Acc: " />
+
+        <TextView
+            android:id="@+id/overcardPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/DefAccDivider"
+            android:layout_centerHorizontal="true"
+            android:text="Points: " />
+
+        <Button
+            android:id="@+id/overcardBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/overcardPoints"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#545F71"
+            android:text="Ok" />
+
+        <TextView
+            android:id="@+id/overcardLost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/overcardHeader"
+            android:layout_centerHorizontal="true"
+            android:text="You've Lost"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

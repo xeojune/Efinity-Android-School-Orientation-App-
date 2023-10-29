@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.12" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline4"
@@ -34,15 +34,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.15"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="278dp"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline6"
@@ -50,14 +50,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.27" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="438dp" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline8"
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline9"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.55" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline10"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline11"
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hguideline12"
@@ -106,6 +106,38 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="0dp"
         app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.62" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.67" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.69" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguideline17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="0dp"
+        app:layout_constraintGuide_percent="0.74" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vguideline1"
@@ -172,22 +204,21 @@
         android:shadowDx="15"
         android:shadowDy="20"
         android:shadowRadius="20"
-        android:text="Add member"
+        android:text="Add boss"
         android:textColor="#816338"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/hguideline2"
         app:layout_constraintEnd_toStartOf="@+id/vguideline2"
         app:layout_constraintStart_toStartOf="@+id/vguideline3"
-        app:layout_constraintTop_toTopOf="@+id/hguideline"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline"/>
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="bottom"
-        android:text="Full Name"
+        android:text="Boss Name"
         android:textColor="#545F71"
         app:layout_constraintBottom_toTopOf="@+id/hguideline4"
         app:layout_constraintEnd_toStartOf="@+id/vguideline2"
@@ -199,17 +230,16 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="John Doe"
+        android:hint="Ganon"
         android:textColorHint="#545F71"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:layout_constraintBottom_toTopOf="@+id/hguideline5"
         app:layout_constraintEnd_toStartOf="@+id/vguideline4"
         app:layout_constraintStart_toStartOf="@+id/vguideline1"
-        app:layout_constraintTop_toTopOf="@+id/hguideline4"
-        app:layout_constraintVertical_bias="0.20">
+        app:layout_constraintTop_toTopOf="@+id/hguideline4">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/memberFull"
+            android:id="@+id/bossNameEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="15"
@@ -223,11 +253,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="bottom"
-        android:text="Phone Number"
+        android:text="Boss Power"
         android:textColor="#545F71"
         app:layout_constraintBottom_toTopOf="@+id/hguideline7"
         app:layout_constraintEnd_toStartOf="@+id/vguideline2"
-        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="@+id/vguideline1"
         app:layout_constraintTop_toTopOf="@+id/hguideline6" />
 
@@ -236,21 +265,20 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:hint="8888 8888"
+        android:hint="1000"
         android:textColorHint="#545F71"
         android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
         app:layout_constraintBottom_toTopOf="@+id/hguideline8"
         app:layout_constraintEnd_toStartOf="@+id/vguideline4"
         app:layout_constraintStart_toStartOf="@+id/vguideline1"
-        app:layout_constraintTop_toTopOf="@+id/hguideline7"
-        app:layout_constraintVertical_bias="0.35">
+        app:layout_constraintTop_toTopOf="@+id/hguideline7">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/memberPhone"
+            android:id="@+id/bossPowerEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="15"
-            android:inputType="phone"
+            android:inputType="number"
             android:textColor="#545F71" />
 
 
@@ -261,50 +289,92 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="bottom"
-        android:text="Scanned NFC: "
+        android:text="Boss Description"
         android:textColor="#545F71"
         app:layout_constraintBottom_toTopOf="@+id/hguideline10"
-        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline2"
         app:layout_constraintStart_toStartOf="@+id/vguideline1"
         app:layout_constraintTop_toTopOf="@+id/hguideline9" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="This is a very powerful boss."
+        android:textColorHint="#545F71"
+        android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline11"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline10">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/bossDescEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="15"
+            android:inputType="text"
+            android:textColor="#545F71"
+            android:gravity="top"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:text="Latitude: "
+        android:textColor="#545F71"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline15"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline14" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:text="Longitude: "
+        android:textColor="#545F71"
+        app:layout_constraintBottom_toTopOf="@+id/hguideline17"
+        app:layout_constraintEnd_toStartOf="@+id/vguideline4"
+        app:layout_constraintStart_toStartOf="@+id/vguideline1"
+        app:layout_constraintTop_toTopOf="@+id/hguideline16" />
+
     <Button
-        android:id="@+id/memberAddBtn"
+        android:id="@+id/bossAddBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="#545f71"
         android:text="Add"
         app:layout_constraintBottom_toTopOf="@+id/hguideline13"
         app:layout_constraintEnd_toStartOf="@+id/vguideline2"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/vguideline3"
-        app:layout_constraintTop_toTopOf="@+id/hguideline12"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline12"/>
 
     <Button
-        android:id="@+id/memberDeleteBtn"
+        android:id="@+id/bossDeleteBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="#FF0000"
         android:text="Delete"
         app:layout_constraintBottom_toTopOf="@+id/hguideline13"
         app:layout_constraintEnd_toStartOf="@+id/vguideline6"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/vguideline1"
-        app:layout_constraintTop_toTopOf="@+id/hguideline12"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline12" />
 
     <Button
-        android:id="@+id/memberEditBtn"
+        android:id="@+id/bossEditBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="#545f71"
         android:text="Edit"
         app:layout_constraintBottom_toTopOf="@+id/hguideline13"
         app:layout_constraintEnd_toStartOf="@+id/vguideline4"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/vguideline7"
-        app:layout_constraintTop_toTopOf="@+id/hguideline12"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintTop_toTopOf="@+id/hguideline12"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

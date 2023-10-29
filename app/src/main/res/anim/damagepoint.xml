@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Move the TextView up -->
+    <translate
+        android:fromYDelta="0"
+        android:toYDelta="-100"
+        android:duration="500" />
+
+    <!-- Move the TextView back down to its original position -->
+    <translate
+        android:fromYDelta="-100"
+        android:toYDelta="0"
+        android:startOffset="500"
+        android:duration="500" />
+</set>

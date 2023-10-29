@@ -82,6 +82,7 @@
         <activity android:name=".teams.MemberAddActivity"/>
         <activity android:name=".games.BossEncounterActivity"/>
         <activity android:name=".games.BossBattleActivity"/>
+        <activity android:name=".games.BossAddActivity"/>
     </application>
 
 </manifest>

@@ -146,5 +146,25 @@ data class bossesClass(
     val bossPower: Int,
     val bossDesc: String,
     val lat: Double,
+    val log: Double,
+    val defeated: String
+)
+
+@Serializable
+data class bossesAdd(
+    val bossName: String,
+    val bossPower: Int,
+    val bossDesc: String,
+    val lat: Double,
     val log: Double
+)
+
+@Serializable
+data class userStatsRead(
+    val id: Int,
+    val uniqueID: String,
+    val Attack: Int,
+    val HP: Int,
+    val Defence: Int,
+    val Accuracy: Int
 )
