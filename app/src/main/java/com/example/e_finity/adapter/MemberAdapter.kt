@@ -56,7 +56,7 @@ class MemberAdapter(var data: List<UserRead>, var groupName: String?): RecyclerV
                 }
                 memberName.text = data[position].full_name
                 val url = bucket.publicUrl(data[position].uniqueID + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(memberAva)
+                Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.baseline_person).into(memberAva)
             }
             holder.itemView.setOnClickListener {
                 if (position == data.size) {

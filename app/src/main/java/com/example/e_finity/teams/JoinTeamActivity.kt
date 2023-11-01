@@ -50,7 +50,7 @@ class JoinTeamActivity: AppCompatActivity() {
 
         val url = bucket.publicUrl(name + ".png") + "?timestamp=" + timemodi
         Glide.with(this).load(url).centerCrop().diskCacheStrategy(DiskCacheStrategy.ALL).error(
-            com.example.e_finity.R.drawable.avatar).into(binding.jgroupAva)
+            com.example.e_finity.R.drawable.baseline_person).into(binding.jgroupAva)
         binding.jgroupName.text = name
         binding.jgroupAvaBorder.setStrokeColor(Color.parseColor("#"+color))
         binding.groupStroke.setStrokeColor(Color.parseColor("#"+color))

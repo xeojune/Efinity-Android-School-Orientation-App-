@@ -72,7 +72,7 @@ class MakeTeamActivity: AppCompatActivity() {
             binding.colorEditText.setText("#"+color)
             val url = bucket.publicUrl(name + ".png") + "?timestamp=" + timemodi
             Glide.with(this).load(url).fitCenter().diskCacheStrategy(DiskCacheStrategy.ALL).error(
-                R.drawable.avatar).into(binding.uploadImage)
+                R.drawable.baseline_person).into(binding.uploadImage)
             binding.imageStroke.setStrokeColor(Color.parseColor("#"+color))
         }
 

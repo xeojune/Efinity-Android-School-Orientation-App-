@@ -117,8 +117,8 @@ class BossAddActivity: AppCompatActivity() {
     }
 
     private fun ActivityEnd() {
-        val intent = Intent(this, BossFightActivity::class.java)
-        startActivity(intent)
+//        val intent = Intent(this, BossFightActivity::class.java)
+//        startActivity(intent)
         finish()
     }
 

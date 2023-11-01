@@ -177,6 +177,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                 val marker = MarkerOptions().position(it).title("Click this marker to add a boss here").icon(BitmapDescriptorFactory.fromBitmap(generateSmallIcon2(this)))
                 currentMarker = mMap.addMarker(marker)
                 currentMarker!!.tag = "+"
+                currentMarker!!.showInfoWindow()
             }
         }
         mMap.setOnMarkerClickListener { marker: Marker ->
@@ -192,7 +193,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                     intent.putExtra("latitude", marker.position.latitude.toString())
                     intent.putExtra("longitude", marker.position.longitude.toString())
                     startActivity(intent)
-                    finish()
+//                    finish()
                 }
                 else {
                     if (userRight == "Senior") {
@@ -201,7 +202,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                         intent.putExtra("latitude", marker.position.latitude.toString())
                         intent.putExtra("longitude", marker.position.longitude.toString())
                         startActivity(intent)
-                        finish()
+//                        finish()
                     }
                     else {
                         MainScope().launch {
@@ -231,7 +232,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                     intent.putExtra("latitude", marker.position.latitude.toString())
                     intent.putExtra("longitude", marker.position.longitude.toString())
                     startActivity(intent)
-                    finish()
+//                    finish()
                 }
                 else {
                     if (userRight == "Senior") {
@@ -240,7 +241,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
                         intent.putExtra("latitude", marker.position.latitude.toString())
                         intent.putExtra("longitude", marker.position.longitude.toString())
                         startActivity(intent)
-                        finish()
+//                        finish()
                     }
                     else {
                         Toast.makeText(this, "You need to be closer to the boss to fight it", Toast.LENGTH_LONG).show()
@@ -278,7 +279,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
             while (true) {
                 try {
 
-                    if (oldLocation!!.distanceTo(locationUser!!) == 0f) {
+                    if (oldLocation!!.distanceTo(locationUser!!) <= 20f) {
                         continue
                     }
 
@@ -295,14 +296,14 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
 //                        val sydney = LatLng(1.34835, 103.68313)
                         val sydney = LatLng(locationUser!!.latitude, locationUser!!.longitude)
 //                        mMap.addMarker(MarkerOptions().position(sydney).title("NTU"))
-                        Glide.with(applicationContext).asBitmap().load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(
+                        Glide.with(applicationContext).asBitmap().load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.baseline_person).into(
                             object: CustomTarget<Bitmap>(100,100) {
                                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                                     mMap.addMarker(MarkerOptions().position(sydney).title("Player").icon(BitmapDescriptorFactory.fromBitmap(resource)))
                                 }
 
                                 override fun onLoadCleared(placeholder: Drawable?) {
-                                    mMap.addMarker(MarkerOptions().position(sydney).title("Player").icon(BitmapDescriptorFactory.fromResource(R.drawable.avatar)))
+                                    mMap.addMarker(MarkerOptions().position(sydney).title("Player").icon(BitmapDescriptorFactory.fromResource(R.drawable.baseline_person)))
                                 }
                             }
                         )
@@ -311,7 +312,7 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
 
                         loadBosses()
                     }
-                    Thread.sleep(1000)
+                    Thread.sleep(10000)
                 }
                 catch (ex : Exception) {
 
@@ -376,8 +377,8 @@ class BossFightActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     fun generateSmallIcon2(context: Context): Bitmap {
-        val height = 100
-        val width = 100
+        val height = 200
+        val width = 200
         val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.mapadd)
         return Bitmap.createScaledBitmap(bitmap, width, height, false)
     }

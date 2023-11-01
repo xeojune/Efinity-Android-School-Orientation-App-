@@ -96,7 +96,7 @@ class BossBattleActivity: AppCompatActivity() {
         val bucket = client.storage["avatar"]
         val sharePreference = getSharedPreferences("MY_PRE", Context.MODE_PRIVATE)
         val url = bucket.publicUrl(sharePreference.getString("SESSION", "").toString() + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-        Glide.with(this).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.avatar).into(binding.playerSprite)
+        Glide.with(this).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.baseline_person).into(binding.playerSprite)
         binding.playerSpriteCard.startAnimation(slideAnimationBoss)
         binding.bossSprite.startAnimation(slideAnimation)
 

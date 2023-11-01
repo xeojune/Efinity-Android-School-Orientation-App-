@@ -16,6 +16,7 @@ import com.example.e_finity.databinding.ActivityTreasureBinding
 import com.example.e_finity.treasureClass
 import com.example.e_finity.treasureClassComplete
 import com.example.e_finity.userScore
+import com.example.e_finity.userStatsRead
 import com.romellfudi.fudinfc.gear.NfcAct
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.createSupabaseClient
@@ -123,7 +124,7 @@ class treasureHuntActivity: NfcAct() {
             }.onSuccess {
                 getTreasureData2()
                 addPoints(points, user)
-                Toast.makeText(this@treasureHuntActivity, "You have earned " + points.toString() + " points!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@treasureHuntActivity, "You have earned " + points.toString() + " points and some stats!", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -134,11 +135,29 @@ class treasureHuntActivity: NfcAct() {
             val userScore = client.postgrest["user"].select(columns = Columns.list("uniqueID", "score")){
                 eq("uniqueID", user)
             }.decodeList<userScore>()
+            val userStats = client.postgrest["stats"].select {
+                eq("uniqueID", user)
+            }.decodeList<userStatsRead>()
+            val att = userStats[0].Attack + Math.abs(((points/4)-10 until (points/4)+10).random())
+            val def = userStats[0].Defence + Math.abs(((points/4)-10 until (points/4)+10).random())
+            val hp = userStats[0].HP + Math.abs(((points/4)-10 until (points/4)+10).random())
+            val acc = userStats[0].Accuracy + Math.abs(((points/4)-10 until (points/4)+10).random())
             val total = userScore[0].score + points
             kotlin.runCatching {
                 client.postgrest["user"].update(
                     {
                         set("score", total)
+                    }
+                ){
+                    eq("uniqueID", user)
+                }
+
+                client.postgrest["stats"].update(
+                    {
+                        set("Attack", att)
+                        set("HP", hp)
+                        set("Defence", def)
+                        set("Accuracy", acc)
                     }
                 ){
                     eq("uniqueID", user)
