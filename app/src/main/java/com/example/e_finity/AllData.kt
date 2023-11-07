@@ -171,12 +171,16 @@ data class userStatsRead(
 
 @Serializable
 data class leaderBoard(
-    val name: List<leaderScore>,
-    val color: String
+    val uniqueID: String,
+    val full_name: String,
+    val role: String,
+    val group: leaderScore,
+    val score: Int
 )
 
 @Serializable
 data class leaderScore(
-    val group: String,
-    val score: Int
+    val name: String,
+    val color: String,
+    val timemodi: Int
 )

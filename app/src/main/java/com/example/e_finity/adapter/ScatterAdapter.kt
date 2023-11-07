@@ -73,18 +73,20 @@ class ScatterAdapter(var data: List<scatterClass>): RecyclerView.Adapter<Scatter
                 else{
                     val client = getclient()
                     runBlocking {
-                        val userinfo = client.postgrest["user"].select(columns = Columns.list("""full_name, group!inner(name, color)""")) {
-                            eq("uniqueID", data[position].completed)
-                        }.decodeList<uReadShort>()
-                        scatterAvaName.text = userinfo[0].full_name
-                        if (userinfo[0].group.name != "None"){
-                            scatterAvaBorder.strokeWidth = 10
-                            scatterAvaBorder.setStrokeColor(Color.parseColor("#"+userinfo[0].group.color))
+                        kotlin.runCatching {
+                            val userinfo = client.postgrest["user"].select(columns = Columns.list("""full_name, group!inner(name, color)""")) {
+                                eq("uniqueID", data[position].completed)
+                            }.decodeList<uReadShort>()
+                            scatterAvaName.text = userinfo[0].full_name
+                            if (userinfo[0].group.name != "None"){
+                                scatterAvaBorder.strokeWidth = 10
+                                scatterAvaBorder.setStrokeColor(Color.parseColor("#"+userinfo[0].group.color))
+                            }
+                            val bucket = client.storage["avatar"]
+                            val url = bucket.publicUrl(data[position].completed + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
+                            Log.e("URL", url)
+                            Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.baseline_person).into(scatterAvaImageView)
                         }
-                        val bucket = client.storage["avatar"]
-                        val url = bucket.publicUrl(data[position].completed + ".png") + "?timestamp=" + (System.currentTimeMillis()/(1000*60*3))
-                        Log.e("URL", url)
-                        Glide.with(context).load(url).circleCrop().diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.baseline_person).into(scatterAvaImageView)
                     }
                 }
                 scatterAvaPoints.text = data[position].points.toString() + " points"
